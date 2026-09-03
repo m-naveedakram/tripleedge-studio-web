@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TripleEdge Studio — Android Apps</title>
+  <meta name="description" content="TripleEdge Studio builds creative Android apps — starting with Capy Trace, a calm capybara tracing and coloring app." />
+  <link rel="canonical" href="https://tripleedge-studio.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="TripleEdge Studio — Android Apps" />
+  <meta property="og:description" content="Creative Android apps built with care — trace, draw, and relax." />
+  <meta property="og:url" content="https://tripleedge-studio.vercel.app/" />
+  <meta property="og:site_name" content="TripleEdge Studio" />
+  <meta name="theme-color" content="#0a1018" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a1018;
+      --surface: #121822;
+      --border: rgba(255,255,255,.08);
+      --text: #f0f2f8;
+      --muted: #8b93a8;
+      --accent: #0ea5e9;
+      --accent-2: #f59e0b;
+      --live: #34d399;
+      --live-bg: rgba(52,211,153,.12);
+      --font-display: "Outfit", system-ui, sans-serif;
+      --font-body: "Inter", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% -20%, rgba(14,165,233,.18), transparent 60%),
+        radial-gradient(ellipse 35% 25% at 90% 10%, rgba(245,158,11,.08), transparent);
+      pointer-events: none;
+    }
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10,16,24,.85);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text);
+    }
+    .nav-logo {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 13px; font-weight: 800;
+    }
+    .nav-name { font-family: var(--font-display); font-weight: 700; }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-link {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      padding: 8px 14px; border-radius: 8px;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,.05); }
+    .hero {
+      position: relative; z-index: 1;
+      text-align: center; padding: 72px 24px 48px;
+      max-width: 720px; margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
+    }
+    .hero p { color: var(--muted); margin-top: 16px; font-size: 1.05rem; }
+    main {
+      position: relative; z-index: 1;
+      max-width: 960px; margin: 0 auto;
+      padding: 24px 24px 80px;
+    }
+    .featured {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden;
+    }
+    .featured-visual {
+      background: linear-gradient(155deg, #0c2740 0%, #123652 50%, #1a2840 100%);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 260px; font-size: 72px;
+    }
+    .featured-content { padding: 36px; }
+    .status {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--live-bg); color: var(--live);
+      border: 1px solid rgba(52,211,153,.25);
+      margin-bottom: 12px;
+    }
+    .featured-content h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .featured-content p { color: var(--muted); margin-bottom: 24px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 18px; border-radius: 12px;
+      font-weight: 600; font-size: .875rem; text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #0284c7);
+      color: #fff;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,.05); color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 24px; text-align: center;
+      color: var(--muted); font-size: .85rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 768px) {
+      .featured { grid-template-columns: 1fr; }
+      .nav-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo" aria-hidden="true">TE</div>
+        <span class="nav-name">TripleEdge Studio</span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="#apps">Apps</a>
+        <a class="nav-link" href="legal.html">Legal</a>
+        <a class="nav-link" href="mailto:zshn09171248@gmail.com?subject=TripleEdge%20Studio%20%E2%80%94%20Contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>Creative Android apps, built with care</h1>
+    <p>TripleEdge Studio publishes calm, useful mobile experiences — starting with capybara tracing art you can draw on paper or color on screen.</p>
+  </header>
+
+  <main id="apps">
+    <article class="featured">
+      <div class="featured-visual" aria-hidden="true">🦫</div>
+      <div class="featured-content">
+        <span class="status">Launching now</span>
+        <h2>Capy Trace: Capybara Drawing &amp; Tracing</h2>
+        <p>A relaxing lightbox tracing app — trace adorable capybara line art, color your work, save to My Traces, and collect seasonal packs. Free with ads; Pro unlocks everything forever.</p>
+        <div class="btn-row">
+          <a class="btn btn-ghost" href="capy_trace/privacy.html">Privacy policy</a>
+          <a class="btn btn-ghost" href="capy_trace/support.html">Support</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 TripleEdge Studio · <a href="legal.html">Legal</a> · <a href="mailto:zshn09171248@gmail.com">zshn09171248@gmail.com</a></p>
+  </footer>
+</body>
+</html>
