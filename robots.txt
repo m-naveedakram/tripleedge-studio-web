@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tripleedge-studio.vercel.app/sitemap.xml
+Sitemap: https://tripleedge-studio-web.vercel.app/sitemap.xml

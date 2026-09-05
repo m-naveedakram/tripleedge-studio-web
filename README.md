@@ -2,7 +2,7 @@
 
 Static publisher site for **TripleEdge Studio** Android apps.
 
-**Canonical production URL:** https://tripleedge-studio.vercel.app  
+**Canonical production URL:** https://tripleedge-studio-web.vercel.app  
 **Support:** zshn09171248@gmail.com
 
 ## Contents
@@ -20,17 +20,17 @@ Static publisher site for **TripleEdge Studio** Android apps.
 
 1. Create a Vercel project pointing at this `web2/` folder as the **Root Directory**.
 2. Framework Preset: **Other** (static). Build Command: leave empty. Output Directory: `.`
-3. Keep the default `*.vercel.app` hostname or attach a custom domain. Canonical links assume `https://tripleedge-studio.vercel.app`.
+3. Keep the default `*.vercel.app` hostname or attach a custom domain. Canonical links assume `https://tripleedge-studio-web.vercel.app`.
 4. Deploy and confirm:
-   - https://tripleedge-studio.vercel.app/
-   - https://tripleedge-studio.vercel.app/legal.html
-   - https://tripleedge-studio.vercel.app/capy_trace/privacy.html
+   - https://tripleedge-studio-web.vercel.app/
+   - https://tripleedge-studio-web.vercel.app/legal.html
+   - https://tripleedge-studio-web.vercel.app/capy_trace/privacy.html
 
 ## Google Play Console URLs (Capy Trace)
 
-- Privacy: `https://tripleedge-studio.vercel.app/capy_trace/privacy.html`
-- Terms: `https://tripleedge-studio.vercel.app/capy_trace/terms.html`
-- Support: `https://tripleedge-studio.vercel.app/capy_trace/support.html`
+- Privacy: `https://tripleedge-studio-web.vercel.app/capy_trace/privacy.html`
+- Terms: `https://tripleedge-studio-web.vercel.app/capy_trace/terms.html`
+- Support: `https://tripleedge-studio-web.vercel.app/capy_trace/support.html`
 
 ## GitHub
 
