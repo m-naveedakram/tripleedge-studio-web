@@ -12,6 +12,9 @@ Static publisher site for **TripleEdge Studio** Android apps.
 | `index.html` | Homepage |
 | `legal.html` | Legal hub (Play Console policy URLs) |
 | `capy_trace/` | Capy Trace privacy, terms, support |
+| `rollcall/` | Anime Prompt Builder legal pages |
+| `gif_maker/` | GIF Maker privacy, terms, support |
+| `dimly/` | Dimly legal pages |
 | `app-ads.txt` | AdMob authorized sellers (add your publisher line before release) |
 | `robots.txt` / `sitemap.xml` | Crawling |
 | `favicon.svg` / `site.webmanifest` | Branding |
