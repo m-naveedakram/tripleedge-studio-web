@@ -4,146 +4,478 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TripleEdge Studio — Android Apps</title>
-  <meta name="description" content="TripleEdge Studio builds creative Android apps — starting with Capy Trace, a calm capybara tracing and coloring app." />
+  <meta name="description" content="TripleEdge Studio builds creative Android apps — capybara tracing art, screen brightness control, GIF tools, and more on Google Play." />
   <link rel="canonical" href="https://tripleedge-studio.vercel.app/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="TripleEdge Studio — Android Apps" />
-  <meta property="og:description" content="Creative Android apps built with care — trace, draw, and relax." />
+  <meta property="og:description" content="Thoughtfully designed Android apps — creative tracing, utilities, and tools on Google Play." />
   <meta property="og:url" content="https://tripleedge-studio.vercel.app/" />
   <meta property="og:site_name" content="TripleEdge Studio" />
-  <meta name="theme-color" content="#0a1018" />
+  <meta name="theme-color" content="#080c12" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://play-lh.googleusercontent.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a1018;
-      --surface: #121822;
-      --border: rgba(255,255,255,.08);
+      --bg: #080c12;
+      --bg-elevated: #0d121c;
+      --surface: #121a26;
+      --surface-hover: #182030;
+      --border: rgba(255,255,255,.07);
+      --border-hover: rgba(56,189,248,.35);
       --text: #f0f2f8;
       --muted: #8b93a8;
-      --accent: #0ea5e9;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,.12);
+      --accent-glow: rgba(14,165,233,.45);
       --accent-2: #f59e0b;
       --live: #34d399;
       --live-bg: rgba(52,211,153,.12);
+      --soon: #a78bfa;
+      --soon-bg: rgba(167,139,250,.12);
+      --radius: 20px;
+      --radius-sm: 12px;
       --font-display: "Outfit", system-ui, sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
+
     body::before {
       content: "";
       position: fixed; inset: 0;
       background:
         radial-gradient(ellipse 70% 50% at 50% -20%, rgba(14,165,233,.18), transparent 60%),
-        radial-gradient(ellipse 35% 25% at 90% 10%, rgba(245,158,11,.08), transparent);
-      pointer-events: none;
+        radial-gradient(ellipse 40% 30% at 90% 10%, rgba(245,158,11,.09), transparent),
+        radial-gradient(ellipse 35% 25% at 5% 60%, rgba(56,189,248,.06), transparent);
+      pointer-events: none; z-index: 0;
     }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0; z-index: 200;
+      background: var(--accent); color: #fff; padding: 10px 14px;
+      font-weight: 600; text-decoration: none; border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus { left: 0; top: 0; }
+    a:focus-visible, .btn:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 3px; }
+
     .nav {
       position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px);
-      background: rgba(10,16,24,.85);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      background: rgba(8,12,18,.82);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
-      max-width: 960px; margin: 0 auto;
+      max-width: 1160px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 24px;
+      padding: 14px 24px; gap: 16px;
     }
     .nav-brand {
       display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--text);
+      text-decoration: none; color: var(--text); flex-shrink: 0;
     }
     .nav-logo {
       width: 36px; height: 36px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, #0ea5e9, #f59e0b);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--font-display); font-size: 13px; font-weight: 800;
+      box-shadow: 0 4px 16px var(--accent-glow);
     }
-    .nav-name { font-family: var(--font-display); font-weight: 700; }
-    .nav-links { display: flex; gap: 8px; }
+    .nav-name {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+      letter-spacing: -.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
     .nav-link {
-      color: var(--muted); text-decoration: none; font-size: .875rem;
-      padding: 8px 14px; border-radius: 8px;
+      color: var(--muted); text-decoration: none; font-size: .875rem; font-weight: 500;
+      padding: 8px 14px; border-radius: 8px; transition: color .2s, background .2s;
     }
     .nav-link:hover { color: var(--text); background: rgba(255,255,255,.05); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 16px; border-radius: 10px;
+      font-weight: 600; font-size: .8125rem;
+      text-decoration: none; white-space: nowrap;
+      background: #0284c7; color: #ffffff;
+      border: 1px solid rgba(255,255,255,.12);
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      box-shadow: 0 2px 12px rgba(14,165,233,.4), inset 0 1px 0 rgba(255,255,255,.15);
+      transition: background .2s, box-shadow .2s, transform .2s;
+      margin-left: 4px;
+    }
+    .btn-nav:hover {
+      background: #0ea5e9; color: #ffffff;
+      box-shadow: 0 4px 20px rgba(14,165,233,.5), inset 0 1px 0 rgba(255,255,255,.2);
+      transform: translateY(-1px);
+    }
+    .btn-nav svg { width: 15px; height: 15px; flex-shrink: 0; }
+
     .hero {
       position: relative; z-index: 1;
-      text-align: center; padding: 72px 24px 48px;
-      max-width: 720px; margin: 0 auto;
+      text-align: center;
+      padding: 72px 24px 56px;
+      max-width: 760px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: .75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .14em;
+      color: var(--muted); margin-bottom: 20px;
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
+      font-size: clamp(2.1rem, 5vw, 3.25rem);
+      font-weight: 800; letter-spacing: -.03em; line-height: 1.12;
+      background: linear-gradient(180deg, #fff 20%, #b8c8d8);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .hero p { color: var(--muted); margin-top: 16px; font-size: 1.05rem; }
+    .hero .tagline {
+      color: var(--muted); margin-top: 18px;
+      font-size: 1.0625rem; line-height: 1.75;
+      max-width: 540px; margin-inline: auto;
+    }
+    .hero-cta {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .stats-strip {
+      position: relative; z-index: 1;
+      max-width: 520px; margin: 0 auto 8px;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .stat-item {
+      background: var(--surface); padding: 22px 16px; text-align: center;
+    }
+    .stat-item strong {
+      display: block; font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; letter-spacing: -.02em;
+    }
+    .stat-item strong.live { color: var(--live); }
+    .stat-item strong.soon { color: var(--soon); }
+    .stat-item span {
+      display: block; font-size: .75rem; color: var(--muted);
+      margin-top: 4px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    .status-legend {
+      position: relative; z-index: 1;
+      max-width: 520px; margin: 20px auto 0;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 24px;
+      padding: 0 24px;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+    }
+    .legend-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+    .legend-dot.live { background: var(--live); box-shadow: 0 0 8px var(--live); }
+    .legend-dot.soon { background: var(--soon); }
+
     main {
       position: relative; z-index: 1;
-      max-width: 960px; margin: 0 auto;
-      padding: 24px 24px 80px;
+      max-width: 1160px; margin: 0 auto;
+      padding: 56px 24px 80px;
     }
-    .featured {
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px; overflow: hidden;
+    .section-header { margin-bottom: 28px; }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em;
     }
-    .featured-visual {
-      background: linear-gradient(155deg, #0c2740 0%, #123652 50%, #1a2840 100%);
-      display: flex; align-items: center; justify-content: center;
-      min-height: 260px; font-size: 72px;
+    .section-header p {
+      color: var(--muted); font-size: .9rem; margin-top: 6px;
+      max-width: 520px;
     }
-    .featured-content { padding: 36px; }
+
     .status {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .07em;
       padding: 4px 10px; border-radius: 100px;
-      background: var(--live-bg); color: var(--live);
-      border: 1px solid rgba(52,211,153,.25);
-      margin-bottom: 12px;
+      width: fit-content;
     }
-    .featured-content h2 {
+    .status::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%;
+    }
+    .status-live { background: var(--live-bg); color: var(--live); border: 1px solid rgba(52,211,153,.25); }
+    .status-live::before { background: var(--live); box-shadow: 0 0 6px var(--live); }
+    .status-soon { background: var(--soon-bg); color: var(--soon); border: 1px solid rgba(167,139,250,.25); }
+    .status-soon::before { background: var(--soon); }
+
+    .featured {
+      display: grid; grid-template-columns: 1fr 1.25fr;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden; margin-bottom: 52px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .featured:hover {
+      border-color: rgba(56,189,248,.35);
+      box-shadow: 0 24px 64px rgba(0,0,0,.35), 0 0 0 1px rgba(56,189,248,.08);
+    }
+    .featured-visual {
+      position: relative;
+      background: linear-gradient(155deg, #0c2740 0%, #123652 35%, #1a2840 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px 32px; min-height: 300px;
+    }
+    .featured-visual::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 45% 55%, rgba(56,189,248,.2), transparent 60%);
+    }
+    .featured-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+    }
+    .featured-icon {
+      position: relative; z-index: 1;
+      width: 100px; height: 100px; border-radius: 26px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 24px 64px rgba(14,165,233,.35), 0 0 0 1px rgba(255,255,255,.12);
+      overflow: hidden;
+      background: #1a2434;
+    }
+    .featured-icon img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .featured-content {
+      padding: 40px 40px 40px 36px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-badges {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;
+    }
+    .badge-type {
+      font-size: .68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .08em;
+      padding: 4px 10px; border-radius: 6px;
+      background: rgba(56,189,248,.12); color: #7dd3fc;
+      border: 1px solid rgba(56,189,248,.2);
+    }
+    .featured-content h3 {
       font-family: var(--font-display);
-      font-size: 1.6rem; font-weight: 700; margin-bottom: 12px;
+      font-size: 1.65rem; font-weight: 700;
+      letter-spacing: -.02em; margin-bottom: 12px; line-height: 1.25;
     }
-    .featured-content p { color: var(--muted); margin-bottom: 24px; }
-    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .featured-content p {
+      color: var(--muted); font-size: .9375rem; line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .featured-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+    .category { margin-bottom: 44px; }
+    .category-label {
+      font-size: .72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .category-label::after {
+      content: ""; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .app-card {
+      position: relative;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform .25s ease, border-color .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .app-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
+      opacity: 0; transition: opacity .25s;
+    }
+    .app-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 48px rgba(0,0,0,.28);
+    }
+    .app-card:hover::before { opacity: 1; }
+    .app-card[data-accent="cyan"] { --card-accent: #38bdf8; }
+    .app-card[data-accent="amber"] { --card-accent: #fbbf24; }
+    .app-card[data-accent="purple"] { --card-accent: #c084fc; }
+    .app-card[data-accent="green"] { --card-accent: #34d399; }
+    .app-card[data-accent="pink"] { --card-accent: #f472b6; }
+
+    .app-card-top {
+      padding: 22px 22px 0;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .app-icon {
+      flex-shrink: 0;
+      width: 56px; height: 56px; border-radius: 15px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.22);
+      overflow: hidden;
+    }
+    .app-icon img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .app-icon.has-img { background: #1a2434; }
+    .app-icon.anime { background: linear-gradient(145deg, #a78bfa, #6d28d9); }
+    .app-icon.gif { background: linear-gradient(145deg, #34d399, #059669); }
+    .app-icon.pets { background: linear-gradient(145deg, #f472b6, #db2777); }
+
+    .app-meta { flex: 1; min-width: 0; }
+    .app-meta-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; margin-bottom: 6px;
+    }
+    .app-meta .type {
+      font-size: .68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .app-card h3 {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: -.01em; line-height: 1.35;
+    }
+    .app-card-body {
+      padding: 14px 22px 22px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .app-card p {
+      color: var(--muted); font-size: .85rem; line-height: 1.65;
+      flex: 1; margin-bottom: 18px;
+    }
+    .app-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 8px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .card-support {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px; border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,.06); color: var(--muted);
+      text-decoration: none; transition: background .2s, color .2s; z-index: 2;
+    }
+    .card-support:hover { background: rgba(255,255,255,.12); color: var(--text); }
+    .card-support svg { width: 15px; height: 15px; }
+
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 18px; border-radius: 12px;
-      font-weight: 600; font-size: .875rem; text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 20px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: .875rem;
+      text-decoration: none; transition: all .2s;
+      border: none; cursor: pointer; font-family: inherit;
     }
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #0284c7);
-      color: #fff;
+      background: #0284c7; color: #fff;
+      border: 1px solid rgba(255,255,255,.1);
+      text-shadow: 0 1px 2px rgba(0,0,0,.2);
+      box-shadow: 0 4px 16px rgba(14,165,233,.35);
+    }
+    .btn-primary:hover {
+      background: #0ea5e9;
+      box-shadow: 0 6px 24px rgba(14,165,233,.45);
+      transform: translateY(-1px);
     }
     .btn-ghost {
       background: rgba(255,255,255,.05); color: var(--text);
       border: 1px solid var(--border);
     }
+    .btn-ghost:hover { background: rgba(255,255,255,.09); }
+    .btn-play {
+      background: transparent; color: var(--accent);
+      padding: 6px 0; font-size: .82rem; font-weight: 600;
+    }
+    .btn-play:hover { color: #7dd3fc; }
+    .btn-play svg { width: 17px; height: 17px; flex-shrink: 0; }
+    .btn-muted {
+      background: transparent; color: var(--muted);
+      padding: 6px 0; font-size: .82rem; font-weight: 500;
+      cursor: default; pointer-events: none;
+    }
+
+    .play-all { text-align: center; margin-top: 48px; }
+    .play-all .btn { padding: 13px 26px; }
+
     .footer {
       position: relative; z-index: 1;
       border-top: 1px solid var(--border);
-      padding: 32px 24px; text-align: center;
-      color: var(--muted); font-size: .85rem;
+      background: var(--bg-elevated);
+      padding: 44px 24px;
     }
-    .footer a { color: var(--accent); text-decoration: none; }
+    .footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: space-between; gap: 24px;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand .nav-logo { width: 32px; height: 32px; font-size: 12px; }
+    .footer-brand span { font-family: var(--font-display); font-weight: 700; font-size: .95rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: .875rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy {
+      width: 100%; padding-top: 22px; margin-top: 4px;
+      border-top: 1px solid var(--border);
+      font-size: .78rem; color: #5c6478; text-align: center;
+    }
+
     @media (max-width: 768px) {
       .featured { grid-template-columns: 1fr; }
+      .featured-visual { min-height: 200px; padding: 36px 24px; }
+      .featured-content { padding: 28px 24px 32px; }
+      .stats-strip { grid-template-columns: 1fr; }
       .nav-link { display: none; }
+      .hero { padding: 48px 20px 40px; }
+      .grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-brand, .footer-links { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important; transition: none !important;
+        scroll-behavior: auto !important;
+      }
+      .app-card:hover, .btn-primary:hover, .btn-nav:hover { transform: none; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">
@@ -153,85 +485,235 @@
       <div class="nav-links">
         <a class="nav-link" href="#apps">Apps</a>
         <a class="nav-link" href="legal.html">Legal</a>
-        <a class="nav-link" href="mailto:zshn09171248@gmail.com?subject=TripleEdge%20Studio%20%E2%80%94%20Contact">Contact</a>
+        <a class="btn-nav" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=TripleEdge+Studio">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+          Google Play
+        </a>
       </div>
     </div>
   </nav>
 
   <header class="hero">
-    <h1>Creative Android apps, built with care</h1>
-    <p>TripleEdge Studio publishes calm, useful mobile experiences — starting with capybara tracing art you can draw on paper or color on screen.</p>
+    <p class="hero-eyebrow">TripleEdge Studio</p>
+    <h1>Creative Android apps for calm focus &amp; everyday utility</h1>
+    <p class="tagline">We design and ship mobile experiences you can trust — relaxing capybara tracing art, smarter screen brightness, and more tools built with care on modern Android.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#apps">Browse our apps</a>
+      <a class="btn btn-ghost" href="mailto:zshn09171248@gmail.com?subject=TripleEdge%20Studio%20%E2%80%94%20Contact">Contact us</a>
+    </div>
   </header>
 
-  <main id="apps">
-    <article class="featured">
-      <div class="featured-visual" aria-hidden="true">🦫</div>
-      <div class="featured-content">
-        <span class="status">Launching now</span>
-        <h2>Capybara Tracing - Draw Sketch</h2>
-        <p>A relaxing lightbox tracing app — trace adorable capybara line art, color your work, save to My Traces, and collect seasonal packs. Version 1.0 is free with all art unlocked.</p>
-        <div class="btn-row">
-          <a class="btn btn-ghost" href="capy_trace/privacy.html">Privacy policy</a>
-          <a class="btn btn-ghost" href="capy_trace/support.html">Support</a>
-        </div>
-      </div>
-    </article>
+  <div class="stats-strip" aria-label="App status overview">
+    <div class="stat-item"><strong class="live">2</strong><span>Live on Play Store</span></div>
+    <div class="stat-item"><strong class="soon">3</strong><span>Launching soon</span></div>
+  </div>
 
-    <article class="featured" style="margin-top: 16px;">
-      <div class="featured-visual" aria-hidden="true" style="background: linear-gradient(155deg, #2a1040 0%, #4a2080 50%, #1a2840 100%);">✨</div>
-      <div class="featured-content">
-        <span class="status">Launching now</span>
-        <h2>Anime Prompt Builder</h2>
-        <p>Roll anime character ideas, build rich AI-art prompts from tags, save favorites, and copy text into your favorite image generators. Kotlin + Jetpack Compose.</p>
-        <div class="btn-row">
-          <a class="btn btn-ghost" href="rollcall/privacy.html">Privacy policy</a>
-          <a class="btn btn-ghost" href="rollcall/support.html">Support</a>
-        </div>
-      </div>
-    </article>
+  <div class="status-legend" aria-hidden="true">
+    <span class="legend-item"><span class="legend-dot live"></span> Live — available now</span>
+    <span class="legend-item"><span class="legend-dot soon"></span> Soon — in development</span>
+  </div>
 
-    <article class="featured" style="margin-top: 16px;">
-      <div class="featured-visual" aria-hidden="true" style="background: linear-gradient(155deg, #0f1a12 0%, #1a3d2e 50%, #102018 100%);">🎞️</div>
-      <div class="featured-content">
-        <span class="status">Launching now</span>
-        <h2>GIF Maker — Photo to GIF</h2>
-        <p>Turn photos into smooth GIFs — reorder frames, captions, templates, and export to your gallery. Free with optional Pro to remove ads and unlock premium styles.</p>
-        <div class="btn-row">
-          <a class="btn btn-ghost" href="gif_maker/privacy.html">Privacy policy</a>
-          <a class="btn btn-ghost" href="gif_maker/support.html">Support</a>
-        </div>
+  <main id="main">
+    <section id="apps" aria-labelledby="apps-heading">
+      <div class="section-header">
+        <h2 id="apps-heading">Our apps</h2>
+        <p>Creative tracing, utilities, and companion tools — each built for a clear purpose with privacy and polish in mind.</p>
       </div>
-    </article>
 
-    <article class="featured" style="margin-top: 16px;">
-      <div class="featured-visual" aria-hidden="true" style="background: linear-gradient(155deg, #2a1a22 0%, #5c3040 50%, #1a1420 100%);">🐱</div>
-      <div class="featured-content">
-        <span class="status">Launching now</span>
-        <h2>Mochi Screen Pets</h2>
-        <p>A small companion that walks on your screen. Free with ads. Optional one-time Remove ads purchase hides ads and unlocks Pro pets.</p>
-        <div class="btn-row">
-          <a class="btn btn-ghost" href="shimeji_pets/privacy.html">Privacy policy</a>
-          <a class="btn btn-ghost" href="shimeji_pets/support.html">Support</a>
+      <article class="featured">
+        <div class="featured-visual">
+          <div class="featured-icon">
+            <img
+              src="https://play-lh.googleusercontent.com/P6udrCoP4rR_x1HEYclWpWaBayNQVjOWSfAbrzJeSwMM1T-r4LA7YdsiY3Xj_44OlwII0hW90hmEOKJCjb3KkQ=w256-h256"
+              alt="Capybara Tracing - Draw Sketch app icon"
+              width="100" height="100" loading="eager" decoding="async"
+            />
+          </div>
         </div>
-      </div>
-    </article>
+        <div class="featured-content">
+          <div class="featured-badges">
+            <span class="status status-live">Live</span>
+            <span class="badge-type">Creative tool</span>
+          </div>
+          <h3>Capybara Tracing — Draw Sketch</h3>
+          <p>A relaxing lightbox tracing app — trace adorable capybara line art on paper or color on screen, save to My Traces, and collect seasonal packs. Free with optional Pro to remove ads.</p>
+          <div class="featured-actions">
+            <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.capytrace">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+              Get on Google Play
+            </a>
+            <a class="btn btn-ghost" href="capy_trace/privacy.html">Privacy policy</a>
+          </div>
+        </div>
+      </article>
 
-    <article class="featured" style="margin-top: 16px;">
-      <div class="featured-visual" aria-hidden="true" style="background: linear-gradient(155deg, #1a0e06 0%, #2d1810 50%, #1b1a24 100%);">🌙</div>
-      <div class="featured-content">
-        <span class="status">Coming soon</span>
-        <h2>Dimly — Screen Brightness</h2>
-        <p>Take your screen back — control brightness, dim below your phone&apos;s minimum, cut blue light, and automate schedules. All from one ring. No account required.</p>
-        <div class="btn-row">
-          <a class="btn btn-ghost" href="dimly/privacy.html">Privacy policy</a>
-          <a class="btn btn-ghost" href="dimly/support.html">Support</a>
+      <div class="category">
+        <div class="category-label">Live on Google Play</div>
+        <div class="grid">
+
+          <article class="app-card" data-accent="cyan">
+            <a class="card-support" href="capy_trace/support.html" aria-label="Capybara Tracing support" title="Support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            </a>
+            <div class="app-card-top">
+              <div class="app-icon has-img">
+                <img
+                  src="https://play-lh.googleusercontent.com/P6udrCoP4rR_x1HEYclWpWaBayNQVjOWSfAbrzJeSwMM1T-r4LA7YdsiY3Xj_44OlwII0hW90hmEOKJCjb3KkQ=w256-h256"
+                  alt="Capybara Tracing app icon"
+                  width="56" height="56" loading="lazy" decoding="async"
+                />
+              </div>
+              <div class="app-meta">
+                <div class="app-meta-top">
+                  <span class="type">Tracing &amp; art</span>
+                  <span class="status status-live">Live</span>
+                </div>
+                <h3>Capybara Tracing — Draw Sketch</h3>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>Lightbox-style tracing with capybara packs, on-screen coloring, streaks, and local saves — no account required.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-play" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.capytrace">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+                  View on Play Store
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card" data-accent="amber">
+            <a class="card-support" href="dimly/support.html" aria-label="Dimly support" title="Support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            </a>
+            <div class="app-card-top">
+              <div class="app-icon has-img">
+                <img
+                  src="https://play-lh.googleusercontent.com/zmgYINLkme5Dk7pXsSHHB6fQc7BYAzpu2NPNyqXyuasbAvJ5Se9nvYVZ_TAjsYBpxhOx6HrvbQdzUJZtjojTYQ=w256-h256"
+                  alt="Dimly — Screen Brightness app icon"
+                  width="56" height="56" loading="lazy" decoding="async"
+                />
+              </div>
+              <div class="app-meta">
+                <div class="app-meta-top">
+                  <span class="type">Utility</span>
+                  <span class="status status-live">Live</span>
+                </div>
+                <h3>Dimly — Screen Brightness</h3>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>Control brightness beyond your phone&apos;s minimum, cut blue light, automate schedules, and manage overlays from one simple ring.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-play" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.dimly">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+                  View on Play Store
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </article>
+
+      <div class="category">
+        <div class="category-label">Launching soon</div>
+        <div class="grid">
+
+          <article class="app-card" data-accent="purple">
+            <a class="card-support" href="rollcall/support.html" aria-label="Anime Prompt Builder support" title="Support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            </a>
+            <div class="app-card-top">
+              <div class="app-icon anime" aria-hidden="true">✨</div>
+              <div class="app-meta">
+                <div class="app-meta-top">
+                  <span class="type">AI prompts</span>
+                  <span class="status status-soon">Soon</span>
+                </div>
+                <h3>Anime Prompt Builder</h3>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>Roll anime character ideas, build rich AI-art prompts from tags, save favorites, and copy text into your favorite image generators.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-ghost" href="rollcall/privacy.html">Privacy policy</a>
+                <span class="btn btn-muted">Coming to Play</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card" data-accent="green">
+            <a class="card-support" href="gif_maker/support.html" aria-label="GIF Maker support" title="Support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            </a>
+            <div class="app-card-top">
+              <div class="app-icon gif" aria-hidden="true">🎞️</div>
+              <div class="app-meta">
+                <div class="app-meta-top">
+                  <span class="type">Photo tool</span>
+                  <span class="status status-soon">Soon</span>
+                </div>
+                <h3>GIF Maker — Photo to GIF</h3>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>Turn photos into smooth GIFs — reorder frames, add captions and templates, then export to your gallery. Optional Pro removes ads.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-ghost" href="gif_maker/privacy.html">Privacy policy</a>
+                <span class="btn btn-muted">Coming to Play</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card" data-accent="pink">
+            <a class="card-support" href="shimeji_pets/support.html" aria-label="Mochi Screen Pets support" title="Support">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.7"/><line x1="12" y1="17" x2="12" y2="17"/></svg>
+            </a>
+            <div class="app-card-top">
+              <div class="app-icon pets" aria-hidden="true">🐱</div>
+              <div class="app-meta">
+                <div class="app-meta-top">
+                  <span class="type">Screen pet</span>
+                  <span class="status status-soon">Soon</span>
+                </div>
+                <h3>Mochi Screen Pets</h3>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>A small companion that walks on your screen. Free with ads; optional one-time purchase removes ads and unlocks Pro pets.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-ghost" href="shimeji_pets/privacy.html">Privacy policy</a>
+                <span class="btn btn-muted">Coming to Play</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="play-all">
+        <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=TripleEdge+Studio">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+          All TripleEdge Studio apps on Google Play
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>© 2026 TripleEdge Studio · <a href="legal.html">Legal</a> · <a href="mailto:zshn09171248@gmail.com">zshn09171248@gmail.com</a></p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" aria-hidden="true">TE</div>
+        <span>TripleEdge Studio</span>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:zshn09171248@gmail.com?subject=TripleEdge%20Studio%20%E2%80%94%20Support">Support</a>
+        <a href="legal.html">Legal &amp; privacy</a>
+        <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=TripleEdge+Studio">Google Play</a>
+      </div>
+      <p class="footer-copy">© 2026 TripleEdge Studio. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    </div>
   </footer>
 </body>
 </html>
