@@ -85,4 +85,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url><loc>https://tripleedge-studio.vercel.app/icon%20prompt%20generator/privacy.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tripleedge-studio.vercel.app/icon%20prompt%20generator/terms.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tripleedge-studio.vercel.app/icon%20prompt%20generator/support.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
