@@ -38,3 +38,9 @@ Static publisher site for **TripleEdge Studio** Android apps.
 ## GitHub
 
 This folder is its own git repo (same pattern as Novixa-Labs `web/`). Push to your TripleEdge Studio GitHub account before connecting Vercel.
+
+## Baby Kick Counter & Tracker
+
+Folder: baby_kick_counter/ (privacy.html, terms.html, support.html, icon.png).
+Package: com.tripleedgestudio.babykickcounter.
+Pages reflect the current app: local records, base Firebase only, optional debug test ads; release ads and billing disabled. Review pages when enabling production features.
