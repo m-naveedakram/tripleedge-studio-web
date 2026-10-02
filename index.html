@@ -398,6 +398,32 @@
       padding: 11px 16px;
       font-size: .8125rem;
     }
+    .app-card-footer-row {
+      display: flex;
+      gap: 8px;
+      align-items: stretch;
+    }
+    .app-card-footer-row .btn-store { flex: 1; min-width: 0; }
+    .btn-play-web {
+      flex-shrink: 0;
+      width: 46px;
+      padding: 11px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .btn-play-web:hover {
+      background: rgba(56,189,248,.12);
+      border-color: rgba(56,189,248,.35);
+      color: #7dd3fc;
+    }
+    .btn-play-web svg { width: 20px; height: 20px; }
     .app-card-footer--pad {
       min-height: 47px;
     }
@@ -715,10 +741,13 @@
             </div>
             <div class="app-card-body">
               <p>Tap arrows in the right direction, clear the grid, and solve logic puzzles — easy to learn with optional one-time purchase to remove ads.</p>
-              <div class="app-card-footer">
+              <div class="app-card-footer app-card-footer-row">
                 <a class="btn btn-primary btn-store" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.arrows">
                   <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
                   View on Play Store
+                </a>
+                <a class="btn-play-web" target="_blank" rel="noopener noreferrer" href="arrows/play.html" aria-label="Play in browser" title="Play in browser">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01M17.5 8H19a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1.5M9.5 8H8a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1.5"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
                 </a>
               </div>
             </div>
