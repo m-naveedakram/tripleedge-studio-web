@@ -222,10 +222,6 @@
     .chip-dot::before {
       content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
     }
-    .chip-cat {
-      background: rgba(255,255,255,.05); color: var(--muted);
-      border-color: var(--border);
-    }
     .chip-live {
       background: var(--live-bg); color: var(--live);
       border-color: rgba(52,211,153,.25);
@@ -239,11 +235,17 @@
     a.chip-privacy {
       text-decoration: none; color: #7dd3fc;
       background: rgba(56,189,248,.1); border-color: rgba(56,189,248,.22);
-      transition: background .2s, color .2s;
+      transition: background .2s, color .2s, border-color .2s;
     }
-    a.chip-privacy:hover { background: rgba(56,189,248,.18); color: #bae6fd; }
-    a.chip-privacy svg { width: 12px; height: 12px; flex-shrink: 0; }
+    a.chip-privacy:hover { background: rgba(56,189,248,.18); color: #bae6fd; border-color: rgba(56,189,248,.35); }
+    a.chip-privacy-icon {
+      padding: 7px;
+      border-radius: 10px;
+      line-height: 0;
+    }
+    a.chip-privacy svg { width: 14px; height: 14px; flex-shrink: 0; display: block; }
 
+    .category .featured { margin-bottom: 0; }
     .featured {
       display: grid; grid-template-columns: 1fr 1.25fr;
       background: var(--surface);
@@ -425,9 +427,6 @@
     .btn-ghost:hover { background: rgba(255,255,255,.09); }
     .btn svg.icon-play { width: 17px; height: 17px; flex-shrink: 0; }
 
-    .play-all { text-align: center; margin-top: 48px; }
-    .play-all .btn { padding: 13px 26px; }
-
     .footer {
       position: relative; z-index: 1;
       border-top: 1px solid var(--border);
@@ -516,9 +515,11 @@
     <section id="apps" aria-labelledby="apps-heading">
       <div class="section-header">
         <h2 id="apps-heading">Our apps</h2>
-        <p>Creative tracing, utilities, and companion tools — each built for a clear purpose with privacy and polish in mind.</p>
+        <p>Browse by category — each app shows whether it&apos;s live on Google Play or still in review.</p>
       </div>
 
+      <div class="category">
+        <div class="category-label">Creative &amp; art</div>
       <article class="featured">
         <div class="featured-visual">
           <div class="featured-icon">
@@ -532,11 +533,9 @@
         <div class="featured-content">
           <h3>Capybara Tracing — Draw Sketch</h3>
           <div class="chip-row">
-            <span class="chip chip-cat">Creative</span>
             <span class="chip chip-live chip-dot">Live</span>
-            <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="capy_trace/privacy.html" aria-label="Privacy policy">
+            <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="capy_trace/privacy.html" aria-label="Privacy policy">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Privacy
             </a>
           </div>
           <p>A relaxing lightbox tracing app — trace adorable capybara line art on paper or color on screen, save to My Traces, and collect seasonal packs. Free with optional Pro to remove ads.</p>
@@ -548,9 +547,10 @@
           </div>
         </div>
       </article>
+      </div>
 
       <div class="category">
-        <div class="category-label">Live on Google Play</div>
+        <div class="category-label">Utilities</div>
         <div class="grid">
 
           <article class="app-card" data-accent="amber">
@@ -565,11 +565,9 @@
               <div class="app-meta">
                 <h3>Dimly — Screen Brightness</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Utility</span>
                   <span class="chip chip-live chip-dot">Live</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="dimly/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="dimly/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -585,6 +583,13 @@
             </div>
           </article>
 
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Personalization</div>
+        <div class="grid">
+
           <article class="app-card" data-accent="violet">
             <div class="app-card-top">
               <div class="app-icon has-img">
@@ -597,11 +602,9 @@
               <div class="app-meta">
                 <h3>Neon Border: Edge Lighting</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Personalization</span>
                   <span class="chip chip-live chip-dot">Live</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="neon_focus/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="neon_focus/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -610,38 +613,6 @@
               <p>Neon edge lighting, RGB borders, animated glow, and relaxing sleep sounds — personalize your screen by day and wind down at night.</p>
               <div class="app-card-footer">
                 <a class="btn btn-primary btn-store" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.neonfocussleep">
-                  <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
-                  View on Play Store
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="app-card" data-accent="green">
-            <div class="app-card-top">
-              <div class="app-icon has-img">
-                <img
-                  src="https://play-lh.googleusercontent.com/ZRfn_1qMzKz150_gzEX_VaM8XrS_fOdNDeEj6BCrWHgNYoXcn7nfjZ-uSQyXv_OioN1Zdg7ei44vQAzus_H5=w256-h256"
-                  alt="Image to GIF Converter &amp; Maker app icon"
-                  width="56" height="56" loading="lazy" decoding="async"
-                />
-              </div>
-              <div class="app-meta">
-                <h3>Image to GIF Converter &amp; Maker</h3>
-                <div class="chip-row">
-                  <span class="chip chip-cat">Photo tool</span>
-                  <span class="chip chip-live chip-dot">Live</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="gif_maker/privacy.html" aria-label="Privacy policy">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="app-card-body">
-              <p>Create animated GIFs from photos — combine images, control speed, preview, and save or share your GIFs in a few simple steps.</p>
-              <div class="app-card-footer">
-                <a class="btn btn-primary btn-store" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.gifgenerator">
                   <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
                   View on Play Store
                 </a>
@@ -661,11 +632,9 @@
               <div class="app-meta">
                 <h3>Anime Shimeji: Screen Pets</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Personalization</span>
                   <span class="chip chip-live chip-dot">Live</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="shimeji_pets/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="shimeji_pets/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -681,6 +650,50 @@
             </div>
           </article>
 
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Photo &amp; media</div>
+        <div class="grid">
+
+          <article class="app-card" data-accent="green">
+            <div class="app-card-top">
+              <div class="app-icon has-img">
+                <img
+                  src="https://play-lh.googleusercontent.com/ZRfn_1qMzKz150_gzEX_VaM8XrS_fOdNDeEj6BCrWHgNYoXcn7nfjZ-uSQyXv_OioN1Zdg7ei44vQAzus_H5=w256-h256"
+                  alt="Image to GIF Converter &amp; Maker app icon"
+                  width="56" height="56" loading="lazy" decoding="async"
+                />
+              </div>
+              <div class="app-meta">
+                <h3>Image to GIF Converter &amp; Maker</h3>
+                <div class="chip-row">
+                  <span class="chip chip-live chip-dot">Live</span>
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="gif_maker/privacy.html" aria-label="Privacy policy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="app-card-body">
+              <p>Create animated GIFs from photos — combine images, control speed, preview, and save or share your GIFs in a few simple steps.</p>
+              <div class="app-card-footer">
+                <a class="btn btn-primary btn-store" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=com.tripleedgestudio.gifgenerator">
+                  <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+                  View on Play Store
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="category-label">Games</div>
+        <div class="grid">
+
           <article class="app-card" data-accent="cyan">
             <div class="app-card-top">
               <div class="app-icon has-img">
@@ -693,11 +706,9 @@
               <div class="app-meta">
                 <h3>Arrow Maze: Tape Away Puzzle</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Puzzle</span>
                   <span class="chip chip-live chip-dot">Live</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="arrows/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="arrows/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -717,7 +728,7 @@
       </div>
 
       <div class="category">
-        <div class="category-label">In review — Focus &amp; productivity</div>
+        <div class="category-label">Focus &amp; productivity</div>
         <div class="grid">
 
           <article class="app-card" data-accent="cyan">
@@ -726,11 +737,9 @@
               <div class="app-meta">
                 <h3>Focus Frame</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Focus timer</span>
                   <span class="chip chip-review chip-dot">In review</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="focus_frame/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="focus_frame/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -745,7 +754,7 @@
       </div>
 
       <div class="category">
-        <div class="category-label">In review — Creative &amp; AI</div>
+        <div class="category-label">AI &amp; prompts</div>
         <div class="grid">
 
           <article class="app-card" data-accent="indigo">
@@ -754,11 +763,9 @@
               <div class="app-meta">
                 <h3>Avatar Prompt</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">AI prompts</span>
                   <span class="chip chip-review chip-dot">In review</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="avatar_prompt/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="avatar_prompt/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -777,11 +784,9 @@
               <div class="app-meta">
                 <h3>Icon Prompt Generator</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">AI prompts</span>
                   <span class="chip chip-review chip-dot">In review</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="icon%20prompt%20generator/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="icon%20prompt%20generator/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -798,11 +803,9 @@
               <div class="app-meta">
                 <h3>Anime Prompt Builder</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">AI prompts</span>
                   <span class="chip chip-review chip-dot">In review</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="rollcall/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="rollcall/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -817,7 +820,7 @@
       </div>
 
       <div class="category">
-        <div class="category-label">In review — Lifestyle</div>
+        <div class="category-label">Lifestyle</div>
         <div class="grid">
 
           <article class="app-card" data-accent="rose">
@@ -828,11 +831,9 @@
               <div class="app-meta">
                 <h3>Baby Kick Counter &amp; Tracker</h3>
                 <div class="chip-row">
-                  <span class="chip chip-cat">Wellness</span>
                   <span class="chip chip-review chip-dot">In review</span>
-                  <a class="chip chip-privacy" target="_blank" rel="noopener noreferrer" href="baby_kick_counter/privacy.html" aria-label="Privacy policy">
+                  <a class="chip chip-privacy chip-privacy-icon" target="_blank" rel="noopener noreferrer" href="baby_kick_counter/privacy.html" aria-label="Privacy policy">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Privacy
                   </a>
                 </div>
               </div>
@@ -846,12 +847,6 @@
         </div>
       </div>
 
-      <div class="play-all">
-        <a class="btn btn-ghost" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=TripleEdge+Studio">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
-          All TripleEdge Studio apps on Google Play
-        </a>
-      </div>
     </section>
   </main>
 
@@ -864,7 +859,6 @@
       <div class="footer-links">
         <a href="mailto:zshn09171248@gmail.com?subject=TripleEdge%20Studio%20%E2%80%94%20Support">Support</a>
         <a href="legal.html">Legal &amp; privacy</a>
-        <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/developer?id=TripleEdge+Studio">Google Play</a>
       </div>
       <p class="footer-copy">© 2026 TripleEdge Studio. Google Play and the Google Play logo are trademarks of Google LLC.</p>
     </div>
