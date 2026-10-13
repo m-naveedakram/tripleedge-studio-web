@@ -123,4 +123,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url><loc>https://tripleedge-studio.vercel.app/khmer_keyboard/privacy.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tripleedge-studio.vercel.app/khmer_keyboard/terms.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tripleedge-studio.vercel.app/khmer_keyboard/support.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
