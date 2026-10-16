@@ -15,7 +15,7 @@ const existing = git('ls-tree', '-r', '--name-only', 'HEAD').trim().split('\n');
 const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs']);
 const changed = git('diff', '--name-only', 'HEAD').trim().split('\n').filter(Boolean);
 assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/')), `Unexpected tracked modifications: ${changed}`);
-const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/'));
+const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/') && !name.startsWith('pocket_soundboard/'));
 for (const name of preserved) {
   const actual = fs.readFileSync(path.join(root, name));
   const original = execFileSync('git', ['show', `HEAD:${name}`], {cwd:root, maxBuffer:64 * 1024 * 1024});
@@ -44,7 +44,7 @@ for (const name of ['index.html','legal.html']) {
 
 const pages = ['privacy','terms','support'];
 const voidTags = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
-for (const [app, packageName] of [['khmer_keyboard','com.tripleedgestudio.khmerkeyboard'],['pocket_soundboard','com.novixalabs.pocketsoundboard']]) for (const page of pages) {
+for (const [app, packageName] of [['khmer_keyboard','com.tripleedgestudio.khmerkeyboard'],['pocket_soundboard','com.tripleedgestudio.soundboard']]) for (const page of pages) {
   const name = `${app}/${page}.html`;
   const html = read(name);
   assert(html.startsWith('<!DOCTYPE html>'));

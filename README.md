@@ -42,7 +42,7 @@ This folder is its own git repo (same pattern as Novixa-Labs `web/`). Push to yo
 
 ## Pocket Soundboard
 
-Folder: `pocket_soundboard/`. Developer: TripleEdge Studio. Android package: `com.novixalabs.pocketsoundboard`.
+Folder: `pocket_soundboard/`. Developer: TripleEdge Studio. Android package: `com.tripleedgestudio.soundboard`.
 
 - Privacy: https://tripleedge-studio.vercel.app/pocket_soundboard/privacy.html
 - Terms: https://tripleedge-studio.vercel.app/pocket_soundboard/terms.html
