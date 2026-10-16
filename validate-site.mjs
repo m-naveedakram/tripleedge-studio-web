@@ -14,7 +14,7 @@ const style = html => html.match(/<style>([\s\S]*?)<\/style>/)?.[1].replace(/\r\
 const existing = git('ls-tree', '-r', '--name-only', 'HEAD').trim().split('\n');
 const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs']);
 const changed = git('diff', '--name-only', 'HEAD').trim().split('\n').filter(Boolean);
-assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/')), `Unexpected tracked modifications: ${changed}`);
+assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/')), `Unexpected tracked modifications: ${changed}`);
 const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/'));
 for (const name of preserved) {
   const actual = fs.readFileSync(path.join(root, name));
@@ -25,29 +25,30 @@ for (const name of ['index.html','legal.html']) {
   assert.equal(style(read(name)), style(baseline(name)), `${name} styles changed`);
   // Compare surrounding markup, allowing this app's entry both before and after an approved commit.
   if (name === 'index.html') {
-    const removeCard = input => {
-      const html = normalize(input);
-      const pos = html.indexOf('src="khmer_keyboard/icon.png"');
+    const removeCard = input => ['khmer_keyboard','pocket_soundboard'].reduce((html, app) => {
+      const pos = html.indexOf(`src="${app}/icon.png"`);
       if (pos < 0) return html;
       const start = html.lastIndexOf('\n\n          <article', pos);
       const end = html.indexOf('</article>', pos) + '</article>'.length;
       assert(start >= 0 && end > pos);
       return html.slice(0,start)+html.slice(end);
-    };
-    assert.equal(removeCard(read(name)), removeCard(baseline(name)), 'Existing homepage markup changed');
+    }, normalize(input));
+    assert.equal(removeCard(read(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), removeCard(baseline(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing homepage markup changed');
   } else {
-    const removeBlock = html => normalize(html).replace(/      <div class="app-block">\n        <h2>Khmer Keyboard<\/h2>[\s\S]*?      <\/div>\n/, '');
-    assert.equal(removeBlock(read(name)), removeBlock(baseline(name)), 'Existing legal hub markup changed');
+    const removeBlock = html => normalize(html)
+      .replace(/      <div class="app-block">\n        <h2>Pocket Soundboard<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
+      .replace(/        <\/div>\n      <\/div>\n      <p class="support-note">/, '        </div>\n      <p class="support-note">');
+    assert.equal(removeBlock(read(name)).trimEnd(), removeBlock(baseline(name)).trimEnd(), 'Existing legal hub markup changed');
   }
 }
 
 const pages = ['privacy','terms','support'];
 const voidTags = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
-for (const page of pages) {
-  const name = `khmer_keyboard/${page}.html`;
+for (const [app, packageName] of [['khmer_keyboard','com.tripleedgestudio.khmerkeyboard'],['pocket_soundboard','com.novixalabs.pocketsoundboard']]) for (const page of pages) {
+  const name = `${app}/${page}.html`;
   const html = read(name);
   assert(html.startsWith('<!DOCTYPE html>'));
-  assert(html.includes('com.tripleedgestudio.khmerkeyboard'));
+  assert(html.includes(packageName));
   assert(html.includes('mailto:zshn09171248@gmail.com'));
   assert(html.includes(`rel="canonical" href="https://tripleedge-studio.vercel.app/${name}"`));
   assert(html.includes('name="viewport"'));
@@ -99,11 +100,11 @@ const locations = html => Array.from(html.matchAll(/<loc>([^<]+)<\/loc>/g), matc
 const oldLocations = locations(baseline('sitemap.xml'));
 const newLocations = locations(read('sitemap.xml'));
 assert(oldLocations.every(url => newLocations.includes(url)), 'Existing sitemap URL removed');
-for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/khmer_keyboard/${page}.html`).length, 1);
-const introducedUrls = pages.filter(page => !oldLocations.includes(`https://tripleedge-studio.vercel.app/khmer_keyboard/${page}.html`)).length;
+for (const app of ['khmer_keyboard','pocket_soundboard']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
+const introducedUrls = ['khmer_keyboard','pocket_soundboard'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
 assert.equal(newLocations.length,oldLocations.length+introducedUrls);
 JSON.parse(read('site.webmanifest'));
-console.log(`PASS: ${pages.length} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);
+console.log(`PASS: ${pages.length * 2} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);
 console.log(`PASS: checked local links/assets across ${files.length} HTML pages; no new broken links.`);
 console.log(`PASS: ${preserved.length} other tracked files unchanged; existing homepage/legal markup and styles preserved.`);
 console.log(`PASS: all ${oldLocations.length} baseline sitemap URLs retained; all three app URLs present exactly once; manifest parses.`);

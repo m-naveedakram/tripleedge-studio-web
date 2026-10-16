@@ -11,6 +11,7 @@ Static publisher site for **TripleEdge Studio** Android apps.
 |---|---|
 | `index.html` | Homepage |
 | `legal.html` | Legal hub (Play Console policy URLs) |
+| `pocket_soundboard/` | Pocket Soundboard privacy, terms, support, and icon |
 | `capy_trace/` | Capy Trace privacy, terms, support |
 | `rollcall/` | Anime Prompt Builder legal pages |
 | `gif_maker/` | GIF Maker privacy, terms, support |
@@ -38,6 +39,16 @@ Static publisher site for **TripleEdge Studio** Android apps.
 ## GitHub
 
 This folder is its own git repo (same pattern as Novixa-Labs `web/`). Push to your TripleEdge Studio GitHub account before connecting Vercel.
+
+## Pocket Soundboard
+
+Folder: `pocket_soundboard/`. Developer: TripleEdge Studio. Android package: `com.novixalabs.pocketsoundboard`.
+
+- Privacy: https://tripleedge-studio.vercel.app/pocket_soundboard/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/pocket_soundboard/terms.html
+- Support: https://tripleedge-studio.vercel.app/pocket_soundboard/support.html
+
+The pages describe the current offline Android source and its microphone, local storage, and user-initiated sharing behavior. The homepage and legal hub link to them. Verify that Vercel deployed the repository's root before putting the privacy URL in Play Console.
 
 ## Baby Kick Counter & Tracker
 
