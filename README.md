@@ -48,7 +48,7 @@ Folder: `pocket_soundboard/`. Developer: TripleEdge Studio. Android package: `co
 - Terms: https://tripleedge-studio.vercel.app/pocket_soundboard/terms.html
 - Support: https://tripleedge-studio.vercel.app/pocket_soundboard/support.html
 
-The pages describe the current offline Android source and its microphone, local storage, and user-initiated sharing behavior. The homepage and legal hub link to them. Verify that Vercel deployed the repository's root before putting the privacy URL in Play Console.
+The pages describe microphone, local storage, user-initiated sharing, and the current debug-only AdMob test integration. The homepage and legal hub link to them. Review the pages and Play Data safety form again before enabling live ads.
 
 ## Baby Kick Counter & Tracker
 
