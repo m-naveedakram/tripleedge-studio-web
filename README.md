@@ -48,7 +48,7 @@ Folder: `pocket_soundboard/`. Developer: TripleEdge Studio. Android package: `co
 - Terms: https://tripleedge-studio.vercel.app/pocket_soundboard/terms.html
 - Support: https://tripleedge-studio.vercel.app/pocket_soundboard/support.html
 
-The pages describe microphone, local storage, user-initiated sharing, and the current debug-only AdMob test integration. The homepage and legal hub link to them. Review the pages and Play Data safety form again before enabling live ads.
+The pages describe microphone, local storage, user-initiated sharing, AdMob advertising, and optional Firebase Analytics and Crashlytics. The homepage and legal hub link to them. Review the pages and Play Data safety form before publishing a new app version.
 
 ## Baby Kick Counter & Tracker
 
