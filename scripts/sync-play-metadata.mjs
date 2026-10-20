@@ -46,6 +46,15 @@ function cleanTitle(raw) {
     .trim();
 }
 
+/** Play og:image often includes =s0-br30=w256-h256 which breaks in <img>; use =w256-h256 only. */
+function normalizePlayIconUrl(icon) {
+  if (!icon) return '';
+  const url = decodeHtml(icon.trim());
+  const match = url.match(/^(https:\/\/play-lh\.googleusercontent\.com\/[^=?\s]+)/i);
+  if (match) return `${match[1]}=w256-h256`;
+  return url.replace(/=s0-br30=/gi, '=').replace(/=w\d+-h\d+$/i, '=w256-h256');
+}
+
 async function fetchListing(packageId) {
   const url = `https://play.google.com/store/apps/details?id=${encodeURIComponent(packageId)}&hl=en&gl=us`;
   const res = await fetch(url, {
@@ -61,8 +70,7 @@ async function fetchListing(packageId) {
   const imageMatch = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
     || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
   const title = cleanTitle(titleMatch?.[1]);
-  let icon = imageMatch?.[1] || '';
-  if (icon && !icon.includes('=w')) icon = `${icon}=w256-h256`;
+  const icon = normalizePlayIconUrl(imageMatch?.[1] || '');
   return {packageId, title, icon};
 }
 
@@ -71,7 +79,7 @@ async function main() {
   for (const packageId of LIVE_PACKAGES) {
     try {
       const meta = await fetchListing(packageId);
-      apps[packageId] = {title: meta.title, icon: meta.icon};
+      apps[packageId] = {title: meta.title, icon: normalizePlayIconUrl(meta.icon)};
       console.log(`OK  ${packageId} → ${meta.title}`);
     } catch (err) {
       console.warn(`WARN ${packageId}: ${err.message}`);

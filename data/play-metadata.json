@@ -1,59 +1,59 @@
 {
-  "updatedAt": "2026-10-20T11:54:30.743Z",
+  "updatedAt": "2026-10-20T12:09:01.753Z",
   "liveCount": 13,
   "reviewCount": 4,
   "apps": {
     "com.tripleedgestudio.capytrace": {
       "title": "Capybara Drawing & Tracing",
-      "icon": "https://play-lh.googleusercontent.com/P6udrCoP4rR_x1HEYclWpWaBayNQVjOWSfAbrzJeSwMM1T-r4LA7YdsiY3Xj_44OlwII0hW90hmEOKJCjb3KkQ=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/P6udrCoP4rR_x1HEYclWpWaBayNQVjOWSfAbrzJeSwMM1T-r4LA7YdsiY3Xj_44OlwII0hW90hmEOKJCjb3KkQ=w256-h256"
     },
     "com.tripleedgestudio.coloring": {
       "title": "Coloring Book: Art & Paint",
-      "icon": "https://play-lh.googleusercontent.com/2yx-Ysew6PhRnKs_8SCGBNq_y8Wxve2rZjQl41-cgmxf_KwLb5hbZXL02vuP4fCTlf55QyRRqtC9pJTPpovrUWc=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/2yx-Ysew6PhRnKs_8SCGBNq_y8Wxve2rZjQl41-cgmxf_KwLb5hbZXL02vuP4fCTlf55QyRRqtC9pJTPpovrUWc=w256-h256"
     },
     "com.tripleedgestudio.neontracing": {
       "title": "Neon Glow Line: Doodle",
-      "icon": "https://play-lh.googleusercontent.com/Oid0-bOyF9A-4iYu0RiPiIXoM2hgtRIudwrop8zk6o5QQDHZ0AwLyX-JMrKigEjaI6NyYpMzp45-SjtFawxT=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/Oid0-bOyF9A-4iYu0RiPiIXoM2hgtRIudwrop8zk6o5QQDHZ0AwLyX-JMrKigEjaI6NyYpMzp45-SjtFawxT=w256-h256"
     },
     "com.tripleedgestudio.dimly": {
       "title": "Dimly — Screen Brightness",
-      "icon": "https://play-lh.googleusercontent.com/zmgYINLkme5Dk7pXsSHHB6fQc7BYAzpu2NPNyqXyuasbAvJ5Se9nvYVZ_TAjsYBpxhOx6HrvbQdzUJZtjojTYQ=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/zmgYINLkme5Dk7pXsSHHB6fQc7BYAzpu2NPNyqXyuasbAvJ5Se9nvYVZ_TAjsYBpxhOx6HrvbQdzUJZtjojTYQ=w256-h256"
     },
     "com.tripleedgestudio.neonfocussleep": {
       "title": "Neon Border: Edge Lighting",
-      "icon": "https://play-lh.googleusercontent.com/ZgQEtRLj05Os8Hig8D7A_-D_qmbIbOkDjxCl7-vos38vKJzKhPRGxL2fDioo_nc_anyf94_H9ryUQ7WBo1guVA=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/ZgQEtRLj05Os8Hig8D7A_-D_qmbIbOkDjxCl7-vos38vKJzKhPRGxL2fDioo_nc_anyf94_H9ryUQ7WBo1guVA=w256-h256"
     },
     "com.tripleedgestudio.shimejipets": {
       "title": "Anime Shimeji: Screen Pets",
-      "icon": "https://play-lh.googleusercontent.com/gemtPl9y5TI8Utb8WYxjHrsjH448pE3wwGv3_LYsr6AaNFtG5lIs65mle72OAHKdoyfhieEAsJEDj-dTZSIn2zU=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/gemtPl9y5TI8Utb8WYxjHrsjH448pE3wwGv3_LYsr6AaNFtG5lIs65mle72OAHKdoyfhieEAsJEDj-dTZSIn2zU=w256-h256"
     },
     "com.tripleedgestudio.gifgenerator": {
       "title": "Image to GIF Converter & Maker",
-      "icon": "https://play-lh.googleusercontent.com/ZRfn_1qMzKz150_gzEX_VaM8XrS_fOdNDeEj6BCrWHgNYoXcn7nfjZ-uSQyXv_OioN1Zdg7ei44vQAzus_H5=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/ZRfn_1qMzKz150_gzEX_VaM8XrS_fOdNDeEj6BCrWHgNYoXcn7nfjZ-uSQyXv_OioN1Zdg7ei44vQAzus_H5=w256-h256"
     },
     "com.tripleedgestudio.arrows": {
       "title": "Arrow Maze: Tape Away Puzzle",
-      "icon": "https://play-lh.googleusercontent.com/5cg6-n1H_Z51vRYq-60kJXu9lUrk2I8Z0VvX79DIRjLEgwiraOF47mpc8_piCYOSPJCG-6MoaSlXcp4jFfxPUw=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/5cg6-n1H_Z51vRYq-60kJXu9lUrk2I8Z0VvX79DIRjLEgwiraOF47mpc8_piCYOSPJCG-6MoaSlXcp4jFfxPUw=w256-h256"
     },
     "com.tripleedgestudio.neonfocus": {
       "title": "Neon Focus Frame: Glow Border",
-      "icon": "https://play-lh.googleusercontent.com/V1UL5WPu1SyAbhsz5_yl3IryYPZknvUc8hz5zsAhvV93A42wqjYzuIUgc__ulFL_bUCE-RWCH8XhW6lD3eAY=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/V1UL5WPu1SyAbhsz5_yl3IryYPZknvUc8hz5zsAhvV93A42wqjYzuIUgc__ulFL_bUCE-RWCH8XhW6lD3eAY=w256-h256"
     },
     "com.tripleedgestudio.avatarprompts": {
       "title": "AI Avatar Prompt Generator",
-      "icon": "https://play-lh.googleusercontent.com/OkuKMqMeo91S9o4TjntqGfFfx9954WzAggOX4ojvL-6aWyyWQLfKWiwKCSJmQZBaRk9WohRrgIq6r2DRYym9=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/OkuKMqMeo91S9o4TjntqGfFfx9954WzAggOX4ojvL-6aWyyWQLfKWiwKCSJmQZBaRk9WohRrgIq6r2DRYym9=w256-h256"
     },
     "com.tripleedgestudio.iconprompt": {
       "title": "Icon Prompt Generator",
-      "icon": "https://play-lh.googleusercontent.com/UmamKg1SDRC_GLPX4e6iUzKAYr7cmAma83mFoYTOXc3sCRBTF6T8i2IaC7Dn277ASwn-e2ioxcvjsI2TpuPu4A=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/UmamKg1SDRC_GLPX4e6iUzKAYr7cmAma83mFoYTOXc3sCRBTF6T8i2IaC7Dn277ASwn-e2ioxcvjsI2TpuPu4A=w256-h256"
     },
     "com.tripleedgestudio.anime": {
       "title": "Anime Prompt Generator: AI Art",
-      "icon": "https://play-lh.googleusercontent.com/3B3A8RgCg3fvd4v89G9LtcejwdJUgesMiVamKxEzPt-MX5-14yjOKJIFeBcWxdtltndogBcA8S0ojW9GTW68jw=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/3B3A8RgCg3fvd4v89G9LtcejwdJUgesMiVamKxEzPt-MX5-14yjOKJIFeBcWxdtltndogBcA8S0ojW9GTW68jw=w256-h256"
     },
     "com.tripleedgestudio.babykickcounter": {
       "title": "Baby Kick Counter & Tracker",
-      "icon": "https://play-lh.googleusercontent.com/avJKo8gxWv2Hr5-ID0nMGWxSmrXA-IKOfyuO7qX-flsGITRJXSkNLfZbFD38wYisc8re9Oon7-aL9fpXpo22zg=s0-br30=w256-h256"
+      "icon": "https://play-lh.googleusercontent.com/avJKo8gxWv2Hr5-ID0nMGWxSmrXA-IKOfyuO7qX-flsGITRJXSkNLfZbFD38wYisc8re9Oon7-aL9fpXpo22zg=w256-h256"
     }
   }
 }
