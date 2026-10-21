@@ -26,7 +26,7 @@ const LIVE_PACKAGES = [
   'com.tripleedgestudio.babykickcounter',
 ];
 
-const REVIEW_COUNT = 4;
+const REVIEW_COUNT = 5;
 const LIVE_COUNT = LIVE_PACKAGES.length;
 
 function decodeHtml(raw) {
