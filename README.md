@@ -20,6 +20,12 @@ Static publisher site for **TripleEdge Studio** Android apps.
 | `robots.txt` / `sitemap.xml` | Crawling |
 | `favicon.svg` / `site.webmanifest` | Branding |
 
+## Play Store catalog (homepage)
+
+- Live listing metadata is stored in `data/play-metadata.json`.
+- Refresh from Google Play before deploy: `node scripts/sync-play-metadata.mjs`
+- The homepage loads `play-store-hydrate.js` to apply the latest titles/icons and stat counts.
+
 ## Deploy to Vercel (no framework)
 
 1. Create a Vercel project pointing at this `web2/` folder as the **Root Directory**.
