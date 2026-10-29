@@ -109,3 +109,13 @@ Folder: `ocr_text_scanner/`. Developer: TripleEdge Studio. Package: `com.triplee
 The pages describe the verified Android implementation: on-device Latin, Chinese, Devanagari, Japanese and Korean OCR; Auto/batch/PDF workflows; local history and exports; Google AdMob/UMP; and separately opt-in, default-off Firebase Analytics and Crashlytics. The local icon is an unchanged copy of the approved Android xxxhdpi launcher asset. The homepage says “Preparing release” because a live Play Store listing or review status has not been verified.
 
 Owner confirmation remains required for the final Google Play target-audience selection, age-directed advertising treatment, publisher-console consent messages, Firebase provider retention/deletion handling and any jurisdiction-specific legal wording. These local pages do not prove Vercel deployment or Play Console acceptance.
+
+## Tamil Happy Birthday Frames
+
+Folder: `tamil_birthday/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.tamilbirthdayframe`.
+
+- Privacy: https://tripleedge-studio.vercel.app/tamil_birthday/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/tamil_birthday/terms.html
+- Support: https://tripleedge-studio.vercel.app/tamil_birthday/support.html
+
+Pages mirror Kannada Happy Birthday Frames (local storage, photo picker, reminders, AdMob + UMP, rewarded unlocks, Firebase Analytics/Crashlytics). `icon.png` is the approved launcher icon resized to 256×256; the homepage card shows the app as “In review”.
