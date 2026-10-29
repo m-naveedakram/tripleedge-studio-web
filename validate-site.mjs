@@ -25,7 +25,7 @@ for (const name of ['index.html','legal.html']) {
   assert.equal(style(read(name)), style(baseline(name)), `${name} styles changed`);
   // Compare surrounding markup, allowing this app's entry both before and after an approved commit.
   if (name === 'index.html') {
-    const removeCard = input => ['khmer_keyboard','pocket_soundboard'].reduce((html, app) => {
+    const removeCard = input => ['khmer_keyboard','pocket_soundboard','ocr_text_scanner'].reduce((html, app) => {
       const pos = html.indexOf(`src="${app}/icon.png"`);
       if (pos < 0) return html;
       const start = html.lastIndexOf('\n\n          <article', pos);
@@ -36,6 +36,7 @@ for (const name of ['index.html','legal.html']) {
     assert.equal(removeCard(read(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), removeCard(baseline(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing homepage markup changed');
   } else {
     const removeBlock = html => normalize(html)
+      .replace(/      <div class="app-block">\n        <h2>OCR Text Scanner<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Pocket Soundboard<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/        <\/div>\n      <\/div>\n      <p class="support-note">/, '        </div>\n      <p class="support-note">');
     assert.equal(removeBlock(read(name)).trimEnd(), removeBlock(baseline(name)).trimEnd(), 'Existing legal hub markup changed');
@@ -44,7 +45,7 @@ for (const name of ['index.html','legal.html']) {
 
 const pages = ['privacy','terms','support'];
 const voidTags = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
-for (const [app, packageName] of [['khmer_keyboard','com.tripleedgestudio.khmerkeyboard'],['pocket_soundboard','com.tripleedgestudio.soundboard']]) for (const page of pages) {
+for (const [app, packageName] of [['khmer_keyboard','com.tripleedgestudio.khmerkeyboard'],['pocket_soundboard','com.tripleedgestudio.soundboard'],['ocr_text_scanner','com.tripleedgestudio.ocrtextscanner']]) for (const page of pages) {
   const name = `${app}/${page}.html`;
   const html = read(name);
   assert(html.startsWith('<!DOCTYPE html>'));
@@ -100,11 +101,11 @@ const locations = html => Array.from(html.matchAll(/<loc>([^<]+)<\/loc>/g), matc
 const oldLocations = locations(baseline('sitemap.xml'));
 const newLocations = locations(read('sitemap.xml'));
 assert(oldLocations.every(url => newLocations.includes(url)), 'Existing sitemap URL removed');
-for (const app of ['khmer_keyboard','pocket_soundboard']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
-const introducedUrls = ['khmer_keyboard','pocket_soundboard'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
+for (const app of ['khmer_keyboard','pocket_soundboard','ocr_text_scanner']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
+const introducedUrls = ['khmer_keyboard','pocket_soundboard','ocr_text_scanner'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
 assert.equal(newLocations.length,oldLocations.length+introducedUrls);
 JSON.parse(read('site.webmanifest'));
-console.log(`PASS: ${pages.length * 2} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);
+console.log(`PASS: ${pages.length * 3} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);
 console.log(`PASS: checked local links/assets across ${files.length} HTML pages; no new broken links.`);
 console.log(`PASS: ${preserved.length} other tracked files unchanged; existing homepage/legal markup and styles preserved.`);
 console.log(`PASS: all ${oldLocations.length} baseline sitemap URLs retained; all three app URLs present exactly once; manifest parses.`);

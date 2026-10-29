@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — OCR Text Scanner</title>
+<meta name="description" content="Privacy Policy for OCR Text Scanner by TripleEdge Studio, including local OCR, storage, advertising, consent and optional diagnostics.">
+<link rel="canonical" href="https://tripleedge-studio.vercel.app/ocr_text_scanner/privacy.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Privacy Policy — OCR Text Scanner">
+<meta property="og:url" content="https://tripleedge-studio.vercel.app/ocr_text_scanner/privacy.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+    body { font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.5; color: #1a1a1a; background: #fff; max-width: 700px; margin: 40px auto; padding: 0 24px 48px; }
+    h1 { font-size: 22pt; font-weight: bold; margin-bottom: 4px; }
+    h2 { font-size: 14pt; font-weight: bold; margin-top: 28px; margin-bottom: 12px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    p { margin: 0 0 12px; }
+    ul { margin: 0 0 12px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    .subtitle { font-size: 14pt; font-weight: bold; color: #444; margin-bottom: 8px; }
+    .meta { color: #666; font-size: 10pt; margin-bottom: 24px; }
+    .contact-box { background: #f5f5f8; border: 1px solid #ddd; padding: 16px; margin-top: 12px; }
+    .contact-box p { margin-bottom: 6px; }
+    a { color: #1a56db; }
+  </style>
+</head><body><main><h1>Privacy Policy</h1><p class="subtitle">OCR Text Scanner</p>
+<p class="meta"><strong>Last updated:</strong> October 29, 2026</p>
+<p><strong>TripleEdge Studio</strong> provides <strong>OCR Text Scanner</strong> (package: <strong>com.tripleedgestudio.ocrtextscanner</strong>). This policy explains how the app handles document content, local history, advertising, consent and optional diagnostics. No account is required.</p>
+
+<h2>1. On-device text recognition</h2>
+<p>Camera images, user-selected images and PDF pages are prepared and recognized on your device. The app includes Google ML Kit recognition models for <strong>Latin, Chinese, Devanagari, Japanese and Korean</strong> scripts. Auto mode evaluates these supported recognizers locally and selects or combines a suitable result; you can also select a supported script manually.</p>
+<p>Single-image OCR, batch OCR and PDF OCR use the same local recognition pipeline. OCR Text Scanner does not upload your scanned images, PDF pages, recognized text or saved history to a TripleEdge Studio server, Firebase Analytics, Firebase Crashlytics or advertising requests. OCR can work without an internet connection after the app is installed. Network-connected SDK services are described separately below, so this does not mean every app service is offline.</p>
+<p>Google states that ML Kit SDKs may process SDK usage or diagnostic information. The app does not add document images or recognized text to those reports. See <a href="https://developers.google.com/ml-kit/terms">Google ML Kit terms and privacy information</a>.</p>
+
+<h2>2. Camera, files and permissions</h2>
+<ul>
+  <li><strong>Camera</strong> — used only when you choose to photograph a document for scanning. You can deny or revoke this permission in Android Settings.</li>
+  <li><strong>Gallery and image access</strong> — Android's user-selected photo/content picker grants access to items you choose. The app does not request broad photo or storage permission.</li>
+  <li><strong>PDF and export access</strong> — Android's document picker grants access to a PDF or destination you select.</li>
+  <li><strong>Internet and network state</strong> — used by consent, advertising and optional diagnostics, not to upload OCR document content through app code.</li>
+</ul>
+<p>The app does not request location, contacts, microphone, phone or notification permission. If you share text or files, open a web link or use text-to-speech, the other app, browser or installed speech engine you select may process information under its own policy. The app requests offline speech voices where available but cannot guarantee that every installed speech engine operates offline.</p>
+
+<h2>3. Local history, retention and deletion</h2>
+<p>When you save a result, recognized text, titles, favorites and associated scan images are stored in the app's private local Room database and files. Preferences are stored locally with DataStore. Android cloud backup and device-transfer backup of private app data are disabled.</p>
+<p>Saved scans remain until you delete an individual scan, clear History, clear the app's storage in Android Settings or uninstall the app. Normal processing cleans temporary image, PDF-rendering and export files; an interrupted operation can leave temporary data until a later cleanup or app-data removal. The local database is not separately encrypted by the app and relies on Android's app sandbox and device protections.</p>
+<p>TXT and PDF exports are created only when you request them. You choose their destination or recipient. Deleting local history cannot delete exported files, clipboard copies, shared copies, source photos or source PDFs held outside the app. Remove those separately from their destination apps or storage providers.</p>
+
+<h2>4. Google AdMob advertising</h2>
+<p>The release configuration uses Google AdMob. Eligible screens can show labeled banner ads, and a capped interstitial may be considered after returning from a completed result to Home. Ads are not placed in the camera preview, permission flow or active OCR processing screens. The rewarded ad unit is configured but has no active placement.</p>
+<p>The Google Mobile Ads SDK may process IP addresses, device or app identifiers, ad interactions and technical diagnostics for ad delivery, measurement and fraud prevention. An IP address can indicate approximate location. This app removes Android advertising-ID permission, but that does not prevent Google from processing other permitted identifiers or network information. OCR images, recognized text, document titles and local history are not attached to ad requests by the app.</p>
+<p>See <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google Mobile Ads data disclosure</a>, <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and our <a href="../app-ads.txt">app-ads.txt</a>.</p>
+
+<h2>5. Consent and advertising privacy choices</h2>
+<p>The app uses Google's User Messaging Platform (UMP) to request and present advertising consent choices where Google reports that they are required. Scanning remains available if consent information or an ad cannot load. Where UMP reports that privacy options are required, the app provides an advertising privacy option in Settings so you can revisit available choices.</p>
+<p>Available choices depend on region, publisher configuration and Google's consent services. A limited or non-personalized ad is not a claim that Google processes no data. You can also use applicable Android advertising controls.</p>
+
+<h2>6. Optional Firebase Analytics and Crashlytics</h2>
+<p>Firebase Analytics and Firebase Crashlytics have separate controls in Settings and both default to <strong>off</strong>. Firebase is initialized for these services only after you enable at least one option and a valid project configuration is available.</p>
+<p>If you opt in, Analytics may process app-instance identifiers, device/app information and fixed feature events such as coarse operation, result, timing or success categories. Crashlytics may process installation identifiers, crash traces and technical device/app diagnostics. The app's custom telemetry does not include OCR text, images, document titles, phone numbers, email addresses or full file paths. Provider-generated crash fields still follow Firebase's SDK behavior and require ongoing review.</p>
+<p>You can turn either option off. The app stops new custom collection, resets local Analytics data when Analytics is disabled and requests deletion of unsent Crashlytics reports when crash reporting is disabled. A change to automatic crash collection can take effect fully on a later launch, and disabling collection does not automatically erase information already received by Google. See <a href="https://firebase.google.com/support/privacy">Firebase privacy and security information</a>.</p>
+
+<h2>7. Other disclosures and user choices</h2>
+<p>OCR Text Scanner does not create a user account and therefore has no account-deletion flow. If you contact support, we receive the email address, message and attachments you choose to send and use them to respond. Do not send passwords, confidential documents or full document images unless you deliberately choose to share them. Support correspondence is retained as needed to handle the request and applicable obligations; no fixed retention period is promised.</p>
+<p>The app is a general-purpose document utility and is not designed specifically for children. The final Google Play target-audience selection and any age-directed advertising treatment must match the publisher's actual distribution settings. A parent or guardian should supervise a child's use and document sharing where applicable.</p>
+
+<h2>8. Policy changes and contact</h2>
+<p>We may update this policy when the app, SDKs or data practices change. The date above identifies the latest revision. Material changes will be reflected on this page and, where appropriate, in the app or store listing.</p>
+<div class="contact-box"><p><strong>Developer:</strong> TripleEdge Studio</p><p><strong>Email:</strong> <a href="mailto:zshn09171248@gmail.com">zshn09171248@gmail.com</a></p><p><strong>Subject:</strong> TripleEdge Studio — Privacy — OCR Text Scanner</p></div>
+<p><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a> · <a href="support.html">Support</a> · <a href="../legal.html">All apps</a></p>
+</main></body></html>

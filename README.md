@@ -96,3 +96,16 @@ Before approving publication, the owner must confirm:
 5. Vercel root-directory settings, final canonical host and any Google Play Data Safety disclosures. No deployment, email, commit or push is performed by the local page addition.
 
 Policy provider references: https://firebase.google.com/support/privacy, https://developers.google.com/admob/android/privacy/play-data-disclosure, https://developer.android.com/reference/android/speech/SpeechRecognizer.
+
+## OCR Text Scanner
+
+Folder: `ocr_text_scanner/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.ocrtextscanner`.
+
+- Privacy: https://tripleedge-studio.vercel.app/ocr_text_scanner/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/ocr_text_scanner/terms.html
+- Support: https://tripleedge-studio.vercel.app/ocr_text_scanner/support.html
+- Android source: https://github.com/shakeelahmed1989/ocrtextscanner
+
+The pages describe the verified Android implementation: on-device Latin, Chinese, Devanagari, Japanese and Korean OCR; Auto/batch/PDF workflows; local history and exports; Google AdMob/UMP; and separately opt-in, default-off Firebase Analytics and Crashlytics. The local icon is an unchanged copy of the approved Android xxxhdpi launcher asset. The homepage says “Preparing release” because a live Play Store listing or review status has not been verified.
+
+Owner confirmation remains required for the final Google Play target-audience selection, age-directed advertising treatment, publisher-console consent messages, Firebase provider retention/deletion handling and any jurisdiction-specific legal wording. These local pages do not prove Vercel deployment or Play Console acceptance.
