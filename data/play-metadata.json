@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-20T12:09:01.753Z",
-  "liveCount": 13,
+  "updatedAt": "2026-11-03T18:11:11.773Z",
+  "liveCount": 17,
   "reviewCount": 5,
   "apps": {
     "com.tripleedgestudio.capytrace": {
@@ -54,6 +54,22 @@
     "com.tripleedgestudio.babykickcounter": {
       "title": "Baby Kick Counter & Tracker",
       "icon": "https://play-lh.googleusercontent.com/avJKo8gxWv2Hr5-ID0nMGWxSmrXA-IKOfyuO7qX-flsGITRJXSkNLfZbFD38wYisc8re9Oon7-aL9fpXpo22zg=w256-h256"
+    },
+    "com.tripleedgestudio.kawaiizipper": {
+      "title": "Kawaii Zipper Lock Screen",
+      "icon": "https://play-lh.googleusercontent.com/jCUjEM439-mjQMZiO1J5T1-mGbKX8l04vUqHDGLwxvYIc7hy7QG4mlL-Qbu2NLQUeBsY7PT_BJ9po4ZGvArm=w256-h256"
+    },
+    "com.tripleedgestudio.soundboard": {
+      "title": "Meme Soundboard: Sound Buttons",
+      "icon": "https://play-lh.googleusercontent.com/j6n9DNe70uclDM8XROe07pgSW0uSgFW8CCEznqQ37Og6whk1RkR3gatyklwHT0myVNM3rKYT7BOQwcwV6ntGiZg=w256-h256"
+    },
+    "com.tripleedgestudio.khmerkeyboard": {
+      "title": "Khmer Keyboard: English Typing",
+      "icon": "https://play-lh.googleusercontent.com/wcHh-wGfXdYsYDNAa4GXV-3sF9VQ2Huf2uaIrzrEdhE7hI44AqJr9JDYDpygtP2T8547Vy4uNeTyGtHk08hcjQ=w256-h256"
+    },
+    "com.tripleedgestudio.kannadabirthdayframe": {
+      "title": "Kannada Birthday Photo Frame",
+      "icon": "https://play-lh.googleusercontent.com/_2nfwXGWzkb6slylHWzuq_R928sxomky_b2qL7aPcRu_Mn_lVteZXb2-ZOBybasehIewxTQyhcw8Z_fBgMjM=w256-h256"
     }
   }
 }

@@ -24,6 +24,10 @@ const LIVE_PACKAGES = [
   'com.tripleedgestudio.iconprompt',
   'com.tripleedgestudio.anime',
   'com.tripleedgestudio.babykickcounter',
+  'com.tripleedgestudio.kawaiizipper',
+  'com.tripleedgestudio.soundboard',
+  'com.tripleedgestudio.khmerkeyboard',
+  'com.tripleedgestudio.kannadabirthdayframe',
 ];
 
 const REVIEW_COUNT = 5;
