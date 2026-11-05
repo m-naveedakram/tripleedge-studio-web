@@ -25,7 +25,7 @@ for (const name of ['index.html','legal.html']) {
   assert.equal(style(read(name)), style(baseline(name)), `${name} styles changed`);
   // Compare surrounding markup, allowing this app's entry both before and after an approved commit.
   if (name === 'index.html') {
-    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"']];
+    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"'],['kawaii_zipper','com.tripleedgestudio.kawaiizipper'],['kannada_birthday','com.tripleedgestudio.kannadabirthdayframe']];
     const removeCard = input => cards.reduce((html, [, needle]) => {
       const pos = html.indexOf(needle);
       if (pos < 0) return html;
