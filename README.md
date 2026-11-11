@@ -119,3 +119,13 @@ Folder: `tamil_birthday/`. Developer: TripleEdge Studio. Package: `com.tripleedg
 - Support: https://tripleedge-studio.vercel.app/tamil_birthday/support.html
 
 Pages mirror Kannada Happy Birthday Frames (local storage, photo picker, reminders, AdMob + UMP, rewarded unlocks, Firebase Analytics/Crashlytics). `icon.png` is the approved launcher icon resized to 256×256; the homepage card shows the app as “In review”.
+
+## Bhojpuri Birthday Photo Frames
+
+Folder: `bhojpuri_birthday/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.bhojpuribirthdayframes` (from the app's `google-services.json`).
+
+- Privacy: https://tripleedge-studio.vercel.app/bhojpuri_birthday/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/bhojpuri_birthday/terms.html
+- Support: https://tripleedge-studio.vercel.app/bhojpuri_birthday/support.html
+
+Pages mirror Telugu Birthday Photo Frames (photo picker, local storage, AdMob + UMP, rewarded unlocks, Firebase Analytics/Crashlytics), with Bhojpuri specifics: UI in English/Hindi/Bhojpuri, exports to `Pictures/Utsav`. `icon.png` is the app's launcher icon; the homepage card shows the app as “In review”.
