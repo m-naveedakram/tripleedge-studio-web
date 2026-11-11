@@ -12,7 +12,7 @@ const normalize = value => value.replace(/\r\n/g, '\n');
 const stripRaw = html => html.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '');
 const style = html => html.match(/<style>([\s\S]*?)<\/style>/)?.[1].replace(/\r\n/g, '\n');
 const existing = git('ls-tree', '-r', '--name-only', 'HEAD').trim().split('\n');
-const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs','data/play-metadata.json']);
+const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs','data/play-metadata.json','scripts/sync-play-metadata.mjs']);
 const changed = git('diff', '--name-only', 'HEAD').trim().split('\n').filter(Boolean);
 assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/') || name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/')), `Unexpected tracked modifications: ${changed}`);
 const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/') && !name.startsWith('pocket_soundboard/') && !name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/'));
@@ -25,7 +25,7 @@ for (const name of ['index.html','legal.html']) {
   assert.equal(style(read(name)), style(baseline(name)), `${name} styles changed`);
   // Compare surrounding markup, allowing this app's entry both before and after an approved commit.
   if (name === 'index.html') {
-    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"'],['kawaii_zipper','com.tripleedgestudio.kawaiizipper'],['kannada_birthday','com.tripleedgestudio.kannadabirthdayframe'],['bhojpuri_birthday','src="bhojpuri_birthday/icon.png"']];
+    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"'],['kawaii_zipper','com.tripleedgestudio.kawaiizipper'],['kannada_birthday','com.tripleedgestudio.kannadabirthdayframe'],['bhojpuri_birthday','src="bhojpuri_birthday/icon.png"'],['telugu_birthday','src="telugu_birthday/icon.png"'],['drive_companion','src="drive_companion/icon.png"'],['fiveg_lte','href="fiveg_lte/privacy.html"']];
     const removeCard = input => cards.reduce((html, [, needle]) => {
       const pos = html.indexOf(needle);
       if (pos < 0) return html;
@@ -33,7 +33,7 @@ for (const name of ['index.html','legal.html']) {
       const end = html.indexOf('</article>', pos) + '</article>'.length;
       assert(start >= 0 && end > pos);
       return html.slice(0,start)+html.slice(end);
-    }, normalize(input)).replace(/<strong class="review">\d+<\/strong>/,'<strong class="review">N</strong>');
+    }, normalize(input)).replace(/<strong class="review">\d+<\/strong>/,'<strong class="review">N</strong>').replace(/<strong class="live">\d+<\/strong>/, '<strong class="live">N</strong>');
     assert.equal(removeCard(read(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), removeCard(baseline(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing homepage markup changed');
   } else {
     const removeBlock = html => normalize(html)

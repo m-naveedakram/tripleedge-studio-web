@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-05T06:14:08.531Z",
-  "liveCount": 17,
-  "reviewCount": 5,
+  "updatedAt": "2026-11-11T13:55:32.122Z",
+  "liveCount": 22,
+  "reviewCount": 2,
   "apps": {
     "com.tripleedgestudio.capytrace": {
       "title": "Capybara Drawing & Tracing",
@@ -32,7 +32,7 @@
       "icon": "https://play-lh.googleusercontent.com/ZRfn_1qMzKz150_gzEX_VaM8XrS_fOdNDeEj6BCrWHgNYoXcn7nfjZ-uSQyXv_OioN1Zdg7ei44vQAzus_H5=w256-h256"
     },
     "com.tripleedgestudio.arrows": {
-      "title": "Arrow Maze: Tape Away Puzzle",
+      "title": "Arrow Maze: Tap Away Puzzle",
       "icon": "https://play-lh.googleusercontent.com/5cg6-n1H_Z51vRYq-60kJXu9lUrk2I8Z0VvX79DIRjLEgwiraOF47mpc8_piCYOSPJCG-6MoaSlXcp4jFfxPUw=w256-h256"
     },
     "com.tripleedgestudio.neonfocus": {
@@ -70,6 +70,26 @@
     "com.tripleedgestudio.kannadabirthdayframe": {
       "title": "Kannada Birthday Photo Frame",
       "icon": "https://play-lh.googleusercontent.com/_2nfwXGWzkb6slylHWzuq_R928sxomky_b2qL7aPcRu_Mn_lVteZXb2-ZOBybasehIewxTQyhcw8Z_fBgMjM=w256-h256"
+    },
+    "com.tripleedgestudio.telugubirthdayframes": {
+      "title": "Telugu Birthday Photo Frames",
+      "icon": "https://play-lh.googleusercontent.com/C79VNBj5_XqzJJzZsNdnl6K4j1EvAWPI3XO8D8lsobymRCdXinQURvcQvCtDdxCPvsuOgW_QsU13QEYe94DkdQ=w256-h256"
+    },
+    "com.tripleedgestudio.ocrtextscanner": {
+      "title": "Image to Text: Offline OCR",
+      "icon": "https://play-lh.googleusercontent.com/xMDjgBsPGvwaRfWbhCVLomiVdNJmRx8R6GnW2FyLZWze2tLDEZJF4kjikbAb605sFfOZbWFIBlmmb47s3PGU=w256-h256"
+    },
+    "com.tripleedgestudio.fiveglte": {
+      "title": "5G 4G LTE Mode & Speed Test",
+      "icon": "https://play-lh.googleusercontent.com/oF3XCnZLK4XaZTekojMlFZubR9Um5bUYYt709c_jmD8SedItRhDYTqXR4n1wDvfa89oIr2vXRIuftp7-ButDfHs=w256-h256"
+    },
+    "com.tripleedgestudio.tilepawgame": {
+      "title": "Tilepaw Grid Path Puzzle",
+      "icon": "https://play-lh.googleusercontent.com/sZjXe0n0IfXVDoEzLLpXzMtYS4OfBXtp0qTX9NktuIgWcuW4JOnzpys7h44HnQRv_HynI5Rq9F5upkxM3ykjb2I=w256-h256"
+    },
+    "com.tripleedgestudio.carplayforandriod": {
+      "title": "Carplay for Android Auto Sync",
+      "icon": "https://play-lh.googleusercontent.com/vqI1mhVq7psyJP_tob4r0nP9IdYpQXN2Xci4iCPjFOTzxy4J7sycBA3_qxd4ha-MhqZ1ZtdECSw5p0xAuN0Bnw=w256-h256"
     }
   }
 }

@@ -28,9 +28,14 @@ const LIVE_PACKAGES = [
   'com.tripleedgestudio.soundboard',
   'com.tripleedgestudio.khmerkeyboard',
   'com.tripleedgestudio.kannadabirthdayframe',
+  'com.tripleedgestudio.telugubirthdayframes',
+  'com.tripleedgestudio.ocrtextscanner',
+  'com.tripleedgestudio.fiveglte',
+  'com.tripleedgestudio.tilepawgame',
+  'com.tripleedgestudio.carplayforandriod',
 ];
 
-const REVIEW_COUNT = 5;
+const REVIEW_COUNT = 2;
 const LIVE_COUNT = LIVE_PACKAGES.length;
 
 function decodeHtml(raw) {
