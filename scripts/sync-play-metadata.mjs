@@ -35,7 +35,7 @@ const LIVE_PACKAGES = [
   'com.tripleedgestudio.carplayforandriod',
 ];
 
-const REVIEW_COUNT = 2;
+const REVIEW_COUNT = 3;
 const LIVE_COUNT = LIVE_PACKAGES.length;
 
 function decodeHtml(raw) {

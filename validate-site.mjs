@@ -14,8 +14,8 @@ const style = html => html.match(/<style>([\s\S]*?)<\/style>/)?.[1].replace(/\r\
 const existing = git('ls-tree', '-r', '--name-only', 'HEAD').trim().split('\n');
 const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs','data/play-metadata.json','scripts/sync-play-metadata.mjs']);
 const changed = git('diff', '--name-only', 'HEAD').trim().split('\n').filter(Boolean);
-assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/') || name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/')), `Unexpected tracked modifications: ${changed}`);
-const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/') && !name.startsWith('pocket_soundboard/') && !name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/'));
+assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/') || name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/') || name.startsWith('assamese_birthday/')), `Unexpected tracked modifications: ${changed}`);
+const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/') && !name.startsWith('pocket_soundboard/') && !name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/') || name.startsWith('assamese_birthday/'));
 for (const name of preserved) {
   const actual = fs.readFileSync(path.join(root, name));
   const original = execFileSync('git', ['show', `HEAD:${name}`], {cwd:root, maxBuffer:64 * 1024 * 1024});
@@ -25,7 +25,7 @@ for (const name of ['index.html','legal.html']) {
   assert.equal(style(read(name)), style(baseline(name)), `${name} styles changed`);
   // Compare surrounding markup, allowing this app's entry both before and after an approved commit.
   if (name === 'index.html') {
-    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"'],['kawaii_zipper','com.tripleedgestudio.kawaiizipper'],['kannada_birthday','com.tripleedgestudio.kannadabirthdayframe'],['bhojpuri_birthday','src="bhojpuri_birthday/icon.png"'],['telugu_birthday','src="telugu_birthday/icon.png"'],['drive_companion','src="drive_companion/icon.png"'],['fiveg_lte','href="fiveg_lte/privacy.html"']];
+    const cards = [['khmer_keyboard','src="khmer_keyboard/icon.png"'],['pocket_soundboard','src="pocket_soundboard/icon.png"'],['ocr_text_scanner','src="ocr_text_scanner/icon.png"'],['tilepaw','href="tilepaw/privacy.html"'],['kawaii_zipper','com.tripleedgestudio.kawaiizipper'],['kannada_birthday','com.tripleedgestudio.kannadabirthdayframe'],['bhojpuri_birthday','src="bhojpuri_birthday/icon.png"'],['assamese_birthday','src="assamese_birthday/icon.png"'],['telugu_birthday','src="telugu_birthday/icon.png"'],['drive_companion','src="drive_companion/icon.png"'],['fiveg_lte','href="fiveg_lte/privacy.html"']];
     const removeCard = input => cards.reduce((html, [, needle]) => {
       const pos = html.indexOf(needle);
       if (pos < 0) return html;
@@ -39,6 +39,7 @@ for (const name of ['index.html','legal.html']) {
     const removeBlock = html => normalize(html)
       .replace(/      <div class="app-block">\n        <h2>OCR Text Scanner<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Pocket Soundboard<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
+      .replace(/      <div class="app-block">\n        <h2>Assamese Birthday Photo Frames<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Bhojpuri Birthday Photo Frames<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Tilepaw<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/        <\/div>\n      <\/div>\n      <p class="support-note">/, '        </div>\n      <p class="support-note">');
@@ -104,8 +105,8 @@ const locations = html => Array.from(html.matchAll(/<loc>([^<]+)<\/loc>/g), matc
 const oldLocations = locations(baseline('sitemap.xml'));
 const newLocations = locations(read('sitemap.xml'));
 assert(oldLocations.every(url => newLocations.includes(url)), 'Existing sitemap URL removed');
-for (const app of ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
-const introducedUrls = ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
+for (const app of ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday','assamese_birthday']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
+const introducedUrls = ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday','assamese_birthday'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
 assert.equal(newLocations.length,oldLocations.length+introducedUrls);
 JSON.parse(read('site.webmanifest'));
 console.log(`PASS: ${pages.length * 4} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);

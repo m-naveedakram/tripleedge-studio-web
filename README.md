@@ -129,3 +129,13 @@ Folder: `bhojpuri_birthday/`. Developer: TripleEdge Studio. Package: `com.triple
 - Support: https://tripleedge-studio.vercel.app/bhojpuri_birthday/support.html
 
 Pages mirror Telugu Birthday Photo Frames (photo picker, local storage, AdMob + UMP, rewarded unlocks, Firebase Analytics/Crashlytics), with Bhojpuri specifics: UI in English/Hindi/Bhojpuri, exports to `Pictures/Utsav`. `icon.png` is the app's launcher icon; the homepage card shows the app as “In review”.
+
+## Assamese Birthday Photo Frames
+
+Folder: `assamese_birthday/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.assamesebirthdayphotoframes` (from the app's `google-services.json`).
+
+- Privacy: https://tripleedge-studio.vercel.app/assamese_birthday/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/assamese_birthday/terms.html
+- Support: https://tripleedge-studio.vercel.app/assamese_birthday/support.html
+
+Pages are based on Bhojpuri Birthday Photo Frames, adjusted to the Assamese app source: photo picker, local storage, AdMob + UMP (ads requested at max rating G), rewarded 24-hour frame unlocks, Firebase Analytics only after consent (no Crashlytics), English/Assamese UI, exports to `Pictures/Assamese Birthday Photo Frames`. The homepage card shows the app as “In review”.
