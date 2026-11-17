@@ -139,3 +139,13 @@ Folder: `assamese_birthday/`. Developer: TripleEdge Studio. Package: `com.triple
 - Support: https://tripleedge-studio.vercel.app/assamese_birthday/support.html
 
 Pages are based on Bhojpuri Birthday Photo Frames, adjusted to the Assamese app source: photo picker, local storage, AdMob + UMP (ads requested at max rating G), rewarded 24-hour frame unlocks, Firebase Analytics only after consent (no Crashlytics), English/Assamese UI, exports to `Pictures/Assamese Birthday Photo Frames`. The homepage card shows the app as “In review”.
+
+## Maithili Birthday Photo Frames
+
+Folder: `maithili_birthday/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.maithilibirthdayphotoframes` (from the app's `google-services.json`).
+
+- Privacy: https://tripleedge-studio.vercel.app/maithili_birthday/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/maithili_birthday/terms.html
+- Support: https://tripleedge-studio.vercel.app/maithili_birthday/support.html
+
+Pages follow the Assamese/Bhojpuri templates, adjusted to the Maithili app source: system photo picker, local storage, AdMob + UMP consent, one rewarded video unlocks all premium frames for 24 hours, English/Maithili/Hindi UI, exports to `Pictures/Sneh`. The source has no Firebase Analytics/Crashlytics dependency, so the policy says none is used (update it if that changes). The homepage card shows the app as “In review”.
