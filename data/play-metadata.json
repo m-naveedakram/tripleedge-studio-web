@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-11T13:55:32.122Z",
-  "liveCount": 22,
-  "reviewCount": 4,
+  "updatedAt": "2026-11-17T12:19:50.826Z",
+  "liveCount": 24,
+  "reviewCount": 2,
   "apps": {
     "com.tripleedgestudio.capytrace": {
       "title": "Capybara Drawing & Tracing",
@@ -90,6 +90,14 @@
     "com.tripleedgestudio.carplayforandriod": {
       "title": "Carplay for Android Auto Sync",
       "icon": "https://play-lh.googleusercontent.com/vqI1mhVq7psyJP_tob4r0nP9IdYpQXN2Xci4iCPjFOTzxy4J7sycBA3_qxd4ha-MhqZ1ZtdECSw5p0xAuN0Bnw=w256-h256"
+    },
+    "com.tripleedgestudio.bhojpuribirthdayframes": {
+      "title": "Bhojpuri Birthday Photo Frames",
+      "icon": "https://play-lh.googleusercontent.com/M33VGiPzIw9uqILXFMrgm9rUS3x1C3FrCkQkrwsDwxPemDyFLm-fXI5SgNo_XbNUm3IErb0W_T5jWDroeBi_0A=w256-h256"
+    },
+    "com.tripleedgestudio.assamesebirthdayphotoframes": {
+      "title": "Assamese Birthday Photo Frames",
+      "icon": "https://play-lh.googleusercontent.com/9N4yOxcy3a0wjgIJeWCyxEE9ZLy_qn5PH2MqDOPWZUDUMdAZrstnz0vvUaXKgxbShGd5eGBgR3KODfOihAYm=w256-h256"
     }
   }
 }
