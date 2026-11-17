@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-17T12:19:50.826Z",
-  "liveCount": 24,
-  "reviewCount": 2,
+  "updatedAt": "2026-11-17T12:21:04.769Z",
+  "liveCount": 25,
+  "reviewCount": 1,
   "apps": {
     "com.tripleedgestudio.capytrace": {
       "title": "Capybara Drawing & Tracing",
@@ -90,6 +90,10 @@
     "com.tripleedgestudio.carplayforandriod": {
       "title": "Carplay for Android Auto Sync",
       "icon": "https://play-lh.googleusercontent.com/vqI1mhVq7psyJP_tob4r0nP9IdYpQXN2Xci4iCPjFOTzxy4J7sycBA3_qxd4ha-MhqZ1ZtdECSw5p0xAuN0Bnw=w256-h256"
+    },
+    "com.tripleedgestudio.tamilbirthdayframe": {
+      "title": "Tamil Birthday Photo Frame",
+      "icon": "https://play-lh.googleusercontent.com/vhcISO5PX7CcLszYMVQVy4dIVwDcfDBx1KwKdmgvngRj5u1MoVYxZKqh-Ap_mLB335Wubzqh0KflsaN7Av9EJd4=w256-h256"
     },
     "com.tripleedgestudio.bhojpuribirthdayframes": {
       "title": "Bhojpuri Birthday Photo Frames",
