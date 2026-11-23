@@ -11,6 +11,7 @@ Static publisher site for **TripleEdge Studio** Android apps.
 |---|---|
 | `index.html` | Homepage |
 | `legal.html` | Legal hub (Play Console policy URLs) |
+| `terms.html` | Site-wide Terms of Service |
 | `pocket_soundboard/` | Pocket Soundboard privacy, terms, support, and icon |
 | `capy_trace/` | Capy Trace privacy, terms, support |
 | `rollcall/` | Anime Prompt Builder legal pages |

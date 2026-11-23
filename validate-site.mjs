@@ -12,7 +12,7 @@ const normalize = value => value.replace(/\r\n/g, '\n');
 const stripRaw = html => html.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '');
 const style = html => html.match(/<style>([\s\S]*?)<\/style>/)?.[1].replace(/\r\n/g, '\n');
 const existing = git('ls-tree', '-r', '--name-only', 'HEAD').trim().split('\n');
-const allowedChanges = new Set(['index.html','legal.html','sitemap.xml','README.md','validate-site.mjs','data/play-metadata.json','scripts/sync-play-metadata.mjs']);
+const allowedChanges = new Set(['index.html','legal.html','terms.html','sitemap.xml','README.md','validate-site.mjs','data/play-metadata.json','scripts/sync-play-metadata.mjs']);
 const changed = git('diff', '--name-only', 'HEAD').trim().split('\n').filter(Boolean);
 assert(changed.every(name => allowedChanges.has(name) || name.startsWith('khmer_keyboard/') || name.startsWith('pocket_soundboard/') || name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/') || name.startsWith('assamese_birthday/') || name.startsWith('maithili_birthday/')), `Unexpected tracked modifications: ${changed}`);
 const preserved = existing.filter(name => !allowedChanges.has(name) && !name.startsWith('khmer_keyboard/') && !name.startsWith('pocket_soundboard/') && !name.startsWith('tilepaw/') || name.startsWith('bhojpuri_birthday/') || name.startsWith('assamese_birthday/') || name.startsWith('maithili_birthday/'));
@@ -34,7 +34,8 @@ for (const name of ['index.html','legal.html']) {
       assert(start >= 0 && end > pos);
       return html.slice(0,start)+html.slice(end);
     }, normalize(input)).replace(/<strong class="review">\d+<\/strong>/,'<strong class="review">N</strong>').replace(/<strong class="live">\d+<\/strong>/, '<strong class="live">N</strong>');
-    assert.equal(removeCard(read(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), removeCard(baseline(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing homepage markup changed');
+    const removeTermsLink = html => html.replace(/\s*<a href="terms\.html">Terms of Service<\/a>/, '');
+    assert.equal(removeTermsLink(removeCard(read(name))).trimEnd().replace(/\n{3,}/g,'\n\n'), removeTermsLink(removeCard(baseline(name))).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing homepage markup changed');
   } else {
     const removeBlock = html => normalize(html)
       .replace(/      <div class="app-block">\n        <h2>OCR Text Scanner<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
@@ -43,10 +44,18 @@ for (const name of ['index.html','legal.html']) {
       .replace(/      <div class="app-block">\n        <h2>Assamese Birthday Photo Frames<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Bhojpuri Birthday Photo Frames<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
       .replace(/      <div class="app-block">\n        <h2>Tilepaw<\/h2>[\s\S]*?        <\/div>\n      <\/div>\n/, '')
-      .replace(/        <\/div>\n      <\/div>\n      <p class="support-note">/, '        </div>\n      <p class="support-note">');
+      .replace(/        <\/div>\n      <\/div>\n      <p class="support-note">/, '        </div>\n      <p class="support-note">')
+      .replace(/      <div class="app-block">\n        <h2>TripleEdge Studio<\/h2>\n        <div class="links"><a href="terms\.html">Terms of Service<\/a><\/div>\n      <\/div>\n/, '');
     assert.equal(removeBlock(read(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), removeBlock(baseline(name)).trimEnd().replace(/\n{3,}/g,'\n\n'), 'Existing legal hub markup changed');
   }
 }
+
+const terms = read('terms.html');
+assert(terms.includes('<title>Terms of Service — TripleEdge Studio</title>'));
+assert(terms.includes('MILELE TECH (PRIVATE) LIMITED'));
+assert(terms.includes('Effective Date:</strong> November 23, 2026'));
+assert(terms.includes('mailto:zshn09171248@gmail.com'));
+assert(terms.includes('rel="canonical" href="https://tripleedge-studio.vercel.app/terms.html"'));
 
 const pages = ['privacy','terms','support'];
 const voidTags = new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
@@ -108,7 +117,8 @@ const newLocations = locations(read('sitemap.xml'));
 assert(oldLocations.every(url => newLocations.includes(url)), 'Existing sitemap URL removed');
 for (const app of ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday','assamese_birthday','maithili_birthday']) for (const page of pages) assert.equal(newLocations.filter(url => url === `https://tripleedge-studio.vercel.app/${app}/${page}.html`).length, 1);
 const introducedUrls = ['khmer_keyboard','pocket_soundboard','ocr_text_scanner','tilepaw','bhojpuri_birthday','assamese_birthday','maithili_birthday'].flatMap(app => pages.map(page => `https://tripleedge-studio.vercel.app/${app}/${page}.html`)).filter(url => !oldLocations.includes(url)).length;
-assert.equal(newLocations.length,oldLocations.length+introducedUrls);
+const introducedGlobalUrls = ['https://tripleedge-studio.vercel.app/terms.html'].filter(url => !oldLocations.includes(url)).length;
+assert.equal(newLocations.length,oldLocations.length+introducedUrls+introducedGlobalUrls);
 JSON.parse(read('site.webmanifest'));
 console.log(`PASS: ${pages.length * 4} app documents have balanced markup, metadata, sibling navigation and exact template styles.`);
 console.log(`PASS: checked local links/assets across ${files.length} HTML pages; no new broken links.`);
