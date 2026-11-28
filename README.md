@@ -150,3 +150,13 @@ Folder: `maithili_birthday/`. Developer: TripleEdge Studio. Package: `com.triple
 - Support: https://tripleedge-studio.vercel.app/maithili_birthday/support.html
 
 Pages follow the Assamese/Bhojpuri templates, adjusted to the Maithili app source: system photo picker, local storage, AdMob + UMP consent, one rewarded video unlocks all premium frames for 24 hours, English/Maithili/Hindi UI, exports to `Pictures/Sneh`. The source has no Firebase Analytics/Crashlytics dependency, so the policy says none is used (update it if that changes). The homepage card shows the app as “In review”.
+
+## Vintage Christmas Postcard Maker
+
+Folder: `vintage_christmas/`. Developer: TripleEdge Studio. Package: `com.tripleedgestudio.vintagechristmasjournal` (from the app's `google-services.json`; the source's in-app label is still “Vintage Christmas Journal”).
+
+- Privacy: https://tripleedge-studio.vercel.app/vintage_christmas/privacy.html
+- Terms: https://tripleedge-studio.vercel.app/vintage_christmas/terms.html
+- Support: https://tripleedge-studio.vercel.app/vintage_christmas/support.html
+
+Pages describe the app source: local scrapbook, no photo or other permissions, AdMob + UMP (max rating G, rewarded sticker unlocks), Firebase Analytics + Crashlytics, PNG export to `Pictures/VintageChristmasJournal`, Android auto-backup enabled. The homepage card shows the app as “In review”.
