@@ -33,6 +33,7 @@ const LIVE_PACKAGES = [
   'com.tripleedgestudio.fiveglte',
   'com.tripleedgestudio.tilepawgame',
   'com.tripleedgestudio.carplayforandriod',
+  'com.tripleedgestudio.digitalcompassgps',
   'com.tripleedgestudio.tamilbirthdayframe',
   'com.tripleedgestudio.bhojpuribirthdayframes',
   'com.tripleedgestudio.assamesebirthdayphotoframes',
